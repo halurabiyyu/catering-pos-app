@@ -21,7 +21,7 @@
           <a href="{{url('/')}}" class="nav-link {{($activeMenu == 'dashboard') ? 'active' : ''}}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Dashboard
+              Dashboardp
             </p>
           </a>
         </li>
