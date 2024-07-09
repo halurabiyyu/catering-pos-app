@@ -9,6 +9,7 @@
     <link rel="icon" href="{{asset('asset/catering-logo.svg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Catering - Point of Sales</title>
 </head>
 <body>
@@ -49,8 +50,8 @@
             </div>
             </div>
         </nav>
-        <div class=" bg-soft">
-            <div id="home" class="container-fluid p-2 d-flex flex-column-reverse flex-lg-row align-items-center" style="height:85vh;">
+        <div class="bg-soft" id="home">
+            <div  class="container-fluid p-2 d-flex flex-column-reverse flex-lg-row align-items-center" style="height:85vh;">
                 <div class="px-5 mb-5">
                     <h1 class="fw-bold color-text-h1">Mam Catering</h1>
                     <p class="color-text-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum dolorum, est culpa libero voluptatem illum modi minima! Asperiores quod animi unde officiis nesciunt quae, dolore enim, numquam id doloribus molestias?</p>
@@ -100,22 +101,22 @@
                     <a href="" class="btn btn-success">Lihat semua menu</a>
                 </div>
                 <div class="container-menu m-auto py-2 px-5">
-                    <div class="tes1 m-1">
+                    <div data-aos="fade-right" class="tes1 m-1">
                         <img src="{{asset('asset/menu-1.jpg')}}" class="img-menu rounded" alt="menu-1">
                     </div>
-                    <div class="tes2 m-1">
+                    <div data-aos="fade-right" class="tes2 m-1">
                         <img src="{{asset('asset/menu-2.jpeg')}}" class="img-menu rounded" alt="menu-2">
                     </div>
-                    <div class="tes3 m-1">
+                    <div class="tes3 m-1" data-aos="fade-right">
                         <img src="{{asset('asset/menu-1.jpg')}}" class="img-menu rounded" alt="menu-3">
                     </div>
-                    <div class="tes4 m-1">
+                    <div class="tes4 m-1" data-aos="fade-left">
                         <img src="{{asset('asset/menu-2.jpeg')}}" class="img-menu rounded" alt="menu-4">
                     </div>
-                    <div class="tes5 m-1">
+                    <div class="tes5 m-1" data-aos="fade-left">
                         <img src="{{asset('asset/menu-1.jpg')}}" class="img-menu rounded" alt="menu-5">
                     </div>
-                    <div class="tes6 m-1">
+                    <div class="tes6 m-1" data-aos="fade-left">
                         <img src="{{asset('asset/menu-2.jpeg')}}" class="img-menu rounded" alt="menu-6">
                     </div>
                 </div>
@@ -128,7 +129,7 @@
                         <p class="text-center text-lg-end fw-bold color-text-footer">Kontak</p>
                         <div>
                             <a class="text-decoration-none color-text-footer" target="_blank"
-                                href="https://wa.me/+628969385305">
+                                href="https://wa.me/+6289693853025">
                                 <img src="{{asset('asset/wa.svg')}}" style="width: 20px; height:20px;" alt="whatsapp">
                                 Whatsapp
                             </a>
@@ -155,10 +156,15 @@
         </footer>
     </main>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
+
+
 </body>
 </html>

@@ -18,7 +18,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-          <a href="{{url('/')}}" class="nav-link {{($activeMenu == 'dashboard') ? 'active' : ''}}">
+          <a href="{{route('admin.dashboard')}}" class="nav-link {{($activeMenu == 'dashboard') ? 'active' : ''}}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -62,6 +62,12 @@
           <a href="{{ url('/penjualan')}}" class="nav-link {{($activeMenu == 'penjualan') ? 'active' : ''}}">
             <i class="nav-icon fas fa-cash-register"></i>
             <p>Transaksi Penjualan</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('logout')}}" class="nav-link {{($activeMenu == 'penjualan') ? 'active' : ''}}">
+            <i class="nav-icon fas fa-cash-register"></i>
+            <p>Log Out</p>
           </a>
         </li>
       </ul>

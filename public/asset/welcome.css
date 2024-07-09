@@ -72,7 +72,7 @@ h1{
 
 .img-menu{
     width: 200px;
-    height: 200px;
+    height: 200px; /* Menambahkan transisi untuk efek yang lebih halus */
 }
 
 

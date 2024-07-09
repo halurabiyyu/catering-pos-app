@@ -39,23 +39,31 @@
             <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 75vh">
                 <div class="bg-white shadow p-2 rounded bg-opacity-25">
                     <h1 class="text-login fw-bold text-center">Log In</h1>
-                    <form action="{{url('proses_login')}}" method="post" class="px-5 py-2">
-                        <div class="input-group mb-3">
+                    <form action="{{url('proses_login')}}" method="POST" class="px-5 py-2">
+                        @csrf
+                        <small class="text-login">Belum mempunyai akun? <a href="{{route('register')}}">register disini</a></small>
+                        <div class="input-group">
                             <span class="input-group-text btn-login">@</span>
                             <div class="form-floating">
-                              <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Username">
-                              <label for="floatingInputGroup1" class="text-login">Username</label>
+                              <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInputGroup1" name="email" placeholder="Email" value="{{ old('email') }}">
+                              <label for="floatingInputGroup1" class="text-login">Email</label>
                             </div>
                         </div>                          
-                        <div class="input-group mb-1">
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <div class="input-group my-1">
                             <span class="input-group-text btn-login">@</span>
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="floatingInputGroup2" placeholder="Password">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingInputGroup2" name="password" placeholder="Password" value="{{ old('password') }}">
                                 <label for="floatingInputGroup2" class="text-login">Password</label>
                             </div>
-                        </div>                          
+                        </div>
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror           
                         <div class="container-fluid d-flex justify-content-center">
-                            <button type="submit" class="btn btn-login my-1">Log In</button>
+                            <button type="submit" class="btn btn-login my-1 shadow-sm">Log In</button>
                         </div>
                     </form>
                 </div>

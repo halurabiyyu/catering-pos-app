@@ -24,17 +24,21 @@ Route::get('/', function () {
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 
 //Auth
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
-
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('proses_register', [AuthController::class, 'proses_register'])->name('proses_register');
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::group(['middleware' => ['cek_login:1'], 'prefix' => 'admin'], function(){
+    Route::group(['middleware' => ['cek_login:1'], 'prefix'=>'admin'], function(){
+        Route::group(['prefix' => 'dashboard'], function(){
+            Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        });
+        
         Route::group(['prefix' => 'level'], function(){
             Route::get('/', [LevelController::class, 'index'])->name('level.index');
             Route::post('/list', [LevelController::class, 'list'])->name('level.list');
@@ -56,9 +60,10 @@ Route::group(['middleware' => ['auth']], function(){
             Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
         });
         
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
     Route::group(['middleware' => ['cek_login:2'], 'prefix' => 'cashier'], function(){
-
+        
     });
     Route::group(['middleware' => ['cek_login:3'], 'prefix' => 'customer'], function(){
 

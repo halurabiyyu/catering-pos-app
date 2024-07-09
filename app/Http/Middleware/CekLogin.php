@@ -16,17 +16,25 @@ class CekLogin
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if(!Auth::check()){
-            return redirect('login');
+        if (!Auth::check()) {
+            return redirect('login')->with('error', 'Maaf anda belum memiliki akses');
         }
 
         $user = Auth::user();
 
-        if(in_array($user->id_level, $roles)){
+        if (in_array($user->level_id, $roles)) {
             return $next($request);
         }
-
-        return redirect('login')->with('error', 'Maaf anda tidak memiliki akses');
-    
+        // return redirect('login')->with('error', 'Maaf anda tidak memiliki akses');
+        // switch ($user->level_id) {
+        //     case 1:
+        //         return redirect()->route('admin.dashboard');
+        //     case 2:
+        //         return redirect()->route('kasir.dashboard');
+        //     case 3:
+        //         return redirect()->route('customer.dashboard');
+        //     default:
+        // }
+        return redirect('login')->with('error', 'Maaf, anda tidak memiliki akses');
     }
 }

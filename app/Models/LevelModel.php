@@ -16,9 +16,11 @@ class LevelModel extends Model
     protected $table = 'levels';
     protected $primaryKey = 'level_id';
 
+    protected $timestamps = true;
+
     protected $fillable = ['level_kode', 'level_nama'];
 
-    public function users(): HasMany{
+    public function user(): HasMany{
         return $this->hasMany(User::class);
     }
 }
