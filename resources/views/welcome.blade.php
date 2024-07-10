@@ -54,7 +54,7 @@
             <div  class="container-fluid p-2 d-flex flex-column-reverse flex-lg-row align-items-center" style="height:85vh;">
                 <div class="px-5 mb-5">
                     <h1 class="fw-bold color-text-h1">Mam Catering</h1>
-                    <p class="color-text-p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum dolorum, est culpa libero voluptatem illum modi minima! Asperiores quod animi unde officiis nesciunt quae, dolore enim, numquam id doloribus molestias?</p>
+                    <p class="color-text-p">Kami menyajikan solusi kuliner terlengkap untuk setiap acara Anda. Dengan lebih dari 30 pilihan menu lezat, kami menawarkan variasi rasa yang akan memanjakan lidah semua tamu. Dari hidangan tradisional hingga internasional, kami memiliki semuanya!</p>
                     <a href="#menu" class="btn btn-success">Pesan Sekarang</a>
                 </div>
                 <div class="px-5 mb-5">
@@ -97,7 +97,7 @@
             <div id="menu" class="container-fluid my-2 p-2 d-flex flex-column flex-lg-row-reverse align-items-center" style="height: 85vh">
                 <div class="px-5 m-auto">
                     <h1 class="color-text-h1 fw-bold text-start fs-1">Menu Kita</h1>
-                    <p class="color-text-p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut cumque debitis quas incidunt! Eum odio tempora quos commodi dolorem ratione omnis est alias sapiente minima, rem error, nesciunt, distinctio vel.</p>
+                    <p class="color-text-p">Nikmati beragam pilihan hidangan lezat kami yang dibuat dengan bahan-bahan segar berkualitas. Dari masakan tradisional hingga kuliner internasional, kami menyajikan cita rasa autentik untuk memenuhi selera Anda. Temukan variasi menu yang menggugah selera untuk setiap acara istimewa Anda.</p>
                     <a href="" class="btn btn-success">Lihat semua menu</a>
                 </div>
                 <div class="container-menu m-auto py-2 px-5">
