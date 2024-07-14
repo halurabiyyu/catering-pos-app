@@ -63,11 +63,15 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
     Route::group(['middleware' => ['cek_login:2'], 'prefix' => 'cashier'], function(){
-        
+        Route::group(['prefix'=>'dashboard'], function() {
+            Route::get('/', [DashboardController::class, 'cashier'])->name('cashier.dashboard'); 
+        });
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
     Route::group(['middleware' => ['cek_login:3'], 'prefix' => 'customer'], function(){
-
+        Route::get('/dashboard', [DashboardController::class, 'customer'])->name('customer.dashboard');
     });
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 

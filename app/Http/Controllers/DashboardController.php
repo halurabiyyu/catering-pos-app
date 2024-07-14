@@ -17,4 +17,11 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', ['breadcrumb' => $breadcrumb, 'activeMenu' => $activeMenu]);
     }
+
+    public function cashier(){
+        return view('cashier.dashboard');
+    }
+    public function customer(){
+        return view('customer.dashboard');
+    }
 }
