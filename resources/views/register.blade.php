@@ -40,39 +40,56 @@
                 <div class="bg-white shadow p-2 rounded bg-opacity-25">
                     <h1 class="text-register fw-bold text-center">Register</h1>
                     @if (session('success'))
+                        <p style="color: green;">{{ session('success') }}</p>
+                    @endif
+
+                    @if (session('error'))
+                        <p style="color: red;">{{ session('error') }}</p>
+                    @endif
+
+                    @if ($errors->any())
+                        <div style="color: red;">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    {{-- @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
                     @if (session('error'))
                         <div class="alert alert-danger">{{ session('error') }}</div>
-                    @endif
-                    <form action="{{url('proses_register')}}" method="post" class="px-5 py-2">
+                    @endif --}}
+                    <form action="{{url('/api/register')}}" method="POST" class="px-5 py-2">
                         @csrf
                         <small class="text-register">Sudah mempunyai akun? <a href="{{route('login')}}">login disini</a></small>
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Nama" name="nama">
+                              <input id="nama" type="text" class="form-control" id="floatingInputGroup1" placeholder="Nama" name="nama">
                               <label for="floatingInputGroup1" class="text-register">Nama</label>
                             </div>
                         </div>                          
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input type="email" class="form-control" id="floatingInputGroup1" name="email" placeholder="Email">
+                              <input id="email" type="email" class="form-control" id="floatingInputGroup1" name="email" placeholder="Email">
                               <label for="floatingInputGroup1" class="text-register">Email</label>
                             </div>
                         </div>                          
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input type="text" class="form-control" id="floatingInputGroup1" name="username" placeholder="Email">
+                              <input id="username" type="text" class="form-control" id="floatingInputGroup1" name="username" placeholder="Email">
                               <label for="floatingInputGroup1" class="text-register">Username</label>
                             </div>
                         </div>                          
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="floatingInputGroup2" name="password" placeholder="Password">
+                                <input id="password" type="password" class="form-control" id="floatingInputGroup2" name="password" placeholder="Password">
                                 <label for="floatingInputGroup2" class="text-register">Password</label>
                             </div>
                         </div>                          
@@ -91,6 +108,7 @@
             </div>
         </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
