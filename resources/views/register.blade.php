@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{asset('asset/catering-logo.svg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Login - Catering App</title>
+    <title>Register - Catering App</title>
     <style>
         .bg-register{
             background-color: #EDF1D6;
@@ -40,57 +41,39 @@
                 <div class="bg-white shadow p-2 rounded bg-opacity-25">
                     <h1 class="text-register fw-bold text-center">Register</h1>
                     @if (session('success'))
-                        <p style="color: green;">{{ session('success') }}</p>
+                        <div class="alert alert-success">{{session('success')}}</div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger">{{session('error')}}</div>
                     @endif
-
-                    @if (session('error'))
-                        <p style="color: red;">{{ session('error') }}</p>
-                    @endif
-
-                    @if ($errors->any())
-                        <div style="color: red;">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    {{-- @if (session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                    @endif
-                    @if (session('error'))
-                        <div class="alert alert-danger">{{ session('error') }}</div>
-                    @endif --}}
-                    <form action="{{url('/api/register')}}" method="POST" class="px-5 py-2">
+                    <form action="{{route('proses_register')}}" method="POST" class="px-5 py-2">
                         @csrf
                         <small class="text-register">Sudah mempunyai akun? <a href="{{route('login')}}">login disini</a></small>
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input id="nama" type="text" class="form-control" id="floatingInputGroup1" placeholder="Nama" name="nama">
-                              <label for="floatingInputGroup1" class="text-register">Nama</label>
+                              <input type="text" class="form-control" id="name" placeholder="Nama" name="nama">
+                              <label for="name" class="text-register">Nama</label>
                             </div>
                         </div>                          
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input id="email" type="email" class="form-control" id="floatingInputGroup1" name="email" placeholder="Email">
-                              <label for="floatingInputGroup1" class="text-register">Email</label>
+                              <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+                              <label for="email" class="text-register">Email</label>
                             </div>
                         </div>                          
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input id="username" type="text" class="form-control" id="floatingInputGroup1" name="username" placeholder="Email">
-                              <label for="floatingInputGroup1" class="text-register">Username</label>
+                              <input id="username" type="text" class="form-control" name="username" placeholder="Email">
+                              <label for="username" class="text-register">Username</label>
                             </div>
                         </div>                          
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                                <input id="password" type="password" class="form-control" id="floatingInputGroup2" name="password" placeholder="Password">
-                                <label for="floatingInputGroup2" class="text-register">Password</label>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                                <label for="password" class="text-register">Password</label>
                             </div>
                         </div>                          
                         <div class="input-group mb-1">
@@ -101,7 +84,7 @@
                             </div>
                         </div>                          
                         <div class="container-fluid d-flex justify-content-center">
-                            <button type="submit" class="btn btn-register my-1 shadow-sm">Register</button>
+                            <button id="submit" type="submit" class="btn btn-register my-1 shadow-sm">Register</button>
                         </div>
                     </form>
                 </div>
