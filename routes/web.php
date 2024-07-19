@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-
+Route::group(['prefix' => 'checkout'], function(){
+    Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
+});
 
 

@@ -55,7 +55,7 @@
                 <div class="px-5 mb-5">
                     <h1 class="fw-bold color-text-h1">Mam Catering</h1>
                     <p class="color-text-p">Kami menyajikan solusi kuliner terlengkap untuk setiap acara Anda. Dengan lebih dari 30 pilihan menu lezat, kami menawarkan variasi rasa yang akan memanjakan lidah semua tamu. Dari hidangan tradisional hingga internasional, kami memiliki semuanya!</p>
-                    <a href="#menu" class="btn btn-success">Pesan Sekarang</a>
+                    <a href="{{route('checkout.index')}}" class="btn btn-success">Pesan Sekarang</a>
                 </div>
                 <div class="px-5 mb-5">
                     <div class="container-img">
