@@ -11,6 +11,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Checkout - Catering</title>
+    <style>
+        .non-scroll-hide {
+            height: 100vh;
+            overflow:auto; /* Add the ability to scroll */
+        }
+
+        .non-scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .non-scroll-hide {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        }
+    </style>
 </head>
 <body>
     <main class="">
@@ -23,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link color-text-navbar" aria-current="page" href="#home">Beranda</a>
+                        <a class="nav-link color-text-navbar" aria-current="page" href="{{url('/')}}">Beranda</a>
                     </li>
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle color-text-navbar" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,7 +62,7 @@
         </nav>
         <div class="container-fluid" style="height: 100vh">
             <div class="row ">
-                <div class="container-fluid col-md-8 overflow-auto" style="height: 100vh">
+                <div class="container-fluid col-md-8 non-scroll-hide">
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="card my-2 shadow">
@@ -163,7 +179,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 bg-body-tertiary" style="height: 100vh;">
-                    <div class="rounded bg-white my-2 p-2 shadow-sm" style="width: 90%;">
+                    <div class="m-auto rounded bg-white my-4 p-2 shadow-sm" style="width: 90%;">
                         <div class="container-fluid">
                             <h3 class="fw-bold">Ringkasan Belanja</h3>
                         </div>
