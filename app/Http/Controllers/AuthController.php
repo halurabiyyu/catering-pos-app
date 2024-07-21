@@ -94,7 +94,7 @@ class AuthController extends Controller
             'email' => 'required|email',
             'username' => 'required',
             'nama' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
         $user = new UserModel();

@@ -51,38 +51,53 @@
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input type="text" class="form-control" id="name" placeholder="Nama" name="nama">
-                              <label for="name" class="text-register">Nama</label>
+                              <input type="text" class="form-control @error('nama') is-invalid @enderror" id="name" placeholder="Nama" name="nama">
+                              <label for="name" class="text-register" required>Nama</label>
                             </div>
-                        </div>                          
+                        </div>
+                        @error('nama')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror                        
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input id="email" type="email" class="form-control" name="email" placeholder="Email">
-                              <label for="email" class="text-register">Email</label>
+                              <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email">
+                              <label for="email" class="text-register" required>Email</label>
                             </div>
-                        </div>                          
+                        </div>
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror                          
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                              <input id="username" type="text" class="form-control" name="username" placeholder="Email">
-                              <label for="username" class="text-register">Username</label>
+                              <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Email">
+                              <label for="username" class="text-register" required>Username</label>
                             </div>
                         </div>                          
+                        @error('username')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
-                                <label for="password" class="text-register">Password</label>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
+                                <label for="password" class="text-register" required>Password</label>
                             </div>
                         </div>                          
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <div class="input-group mb-1">
                             <span class="input-group-text btn-register">@</span>
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="floatingInputGroup2" placeholder="Confirm Password">
-                                <label for="floatingInputGroup2" class="text-register">Confirm Password</label>
+                                <input name="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" placeholder="Confirm Password">
+                                <label for="password_confirmation" class="text-register" required>Confirm Password</label>
                             </div>
                         </div>                          
+                        @error('password_confirmation')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <div class="container-fluid d-flex justify-content-center">
                             <button id="submit" type="submit" class="btn btn-register my-1 shadow-sm">Register</button>
                         </div>
