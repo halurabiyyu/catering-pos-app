@@ -15,8 +15,9 @@
         <input type="text" class="form-control" name="level_kode" id="level_kode" placeholder="Contoh: ADM" value="{{old('level_kode')}}">
         <label for="">Nama Level</label>
         <input type="text" class="form-control" name="level_nama" id="level_nama" placeholder="Contoh: Admin" value="{{old('level_nama')}}">
-        <div class="my-2">
-            <button type="submit" class="btn btn-success">Submit</button>
+        <div class="my-2 d-flex">
+            <a href="{{route('level.index')}}" class="btn btn-secondary">Kembali</button>
+            <button type="submit" class="btn btn-success mx-2">Submit</button>
         </div>
       </form>
     </div>

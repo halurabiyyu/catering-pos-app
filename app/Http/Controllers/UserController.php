@@ -64,25 +64,27 @@ class UserController extends Controller
         $level = LevelModel::all();
         $activeMenu = 'user';
 
-        return view('user.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('admin.user.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
         $request->validate([
-            'username' => 'required|string|min:3|unique:m_user,username',
+            'email' => 'required|email',
+            'username' => 'required|string|min:3|unique:users,username',
             'nama' => 'required|string|max:100',
             'password' => 'required|min:5',
             'level_id' => 'required|integer',
         ]);
 
         UserModel::create([
+            'email' => $request->email,
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => bcrypt($request->password),
             'level_id' => $request->level_id,
         ]);
 
-        return redirect('/user')->with('success', 'Data user berhasil disimpan');
+        return redirect('admin/user')->with('success', 'Data user berhasil disimpan');
     }
 
     public function show(String $id){
@@ -117,38 +119,40 @@ class UserController extends Controller
 
         $activeMenu = 'user';
 
-        return view('user.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('admin.user.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, String $id){
         $request->validate([
-            'username' => 'required|string|min:3|unique:m_user,username,' . $id . ',user_id',
+            'email' => 'required|email',
+            'username' => 'required|string|min:3|unique:users,username,' . $id . ',user_id',
             'nama' => 'required|string|max:100',
             'password' => 'nullable|min:5',
             'level_id' => 'required|integer',
         ]);
 
         UserModel::find($id)->update([
+            'email' => $request->email,
             'username' => $request->username,
             'nama' => $request->nama,
             'password' => $request->password ? bcrypt($request->password) : UserModel::find($id)->password,
             'level_id' => $request->level_id,
         ]);
 
-        return redirect('/user')->with('success', 'Data user berhasil diubah');
+        return redirect('admin/user')->with('success', 'Data user berhasil diubah');
     }
 
     public function destroy(String $id){
         $check = UserModel::find($id);
         if (!$check) {
-            return redirect('/user')->with('error', 'Data user tidak ditemukan');
+            return redirect('admin/user')->with('error', 'Data user tidak ditemukan');
         }
 
         try {
             UserModel::destroy($id);
-            return redirect('/user')->with('success', 'Data user berhasil dihapus');
+            return redirect('admin/user')->with('success', 'Data user berhasil dihapus');
         }catch(\Illuminate\Database\QueryException $e) {
-            return redirect('/user')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+            return redirect('admin/user')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
 }

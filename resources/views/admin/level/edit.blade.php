@@ -17,7 +17,8 @@
         <label for="">Nama Level</label>
         <input type="text" class="form-control" name="level_nama" id="level_nama" placeholder="Contoh: Admin" value="{{$level->level_nama}}">
         <div class="my-2">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <a href="{{route('level.index')}}" class="btn btn-secondary">Kembali</a>
+            <button type="submit" class="btn btn-success mx-2">Submit</button>
         </div>
       </form>
     </div>
