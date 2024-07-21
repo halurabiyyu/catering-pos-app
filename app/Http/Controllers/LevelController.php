@@ -35,8 +35,7 @@ class LevelController extends Controller
         return DataTables::of($levels)
             // ->addIndexColumn()
             ->addColumn('aksi', function ($level) {  // menambahkan kolom aksi 
-                $btn  = '<a href="'.url('/admin/level/' . $level->level_id).'" class="btn btn-info btn-sm">Detail</a> '; 
-                $btn .= '<a href="'.url('/admin/level/' . $level->level_id . '/edit').'" class="btn btn-warning btn-sm">Edit</a> '; 
+                $btn = '<a href="'.url('/admin/level/' . $level->level_id . '/edit').'" class="btn btn-warning btn-sm">Edit</a> '; 
                 $btn .= '<form class="d-inline-block" method="POST" action="'. 
                         url('/admin/level/'.$level->level_id).'">' 
                         . csrf_field() . method_field('DELETE') .  
@@ -62,12 +61,12 @@ class LevelController extends Controller
         $level = LevelModel::all();
         $activeMenu = 'level';
 
-        return view('level.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('admin.level.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request){
         $request->validate([
-            'level_kode' => 'required|string|min:3|unique:m_levels,level_kode',
+            'level_kode' => 'required|string|min:3|unique:levels,level_kode',
             'level_nama' => 'required|string|max:100',
         ]);
 
@@ -76,7 +75,7 @@ class LevelController extends Controller
             'level_nama' => $request->level_nama,
         ]);
 
-        return redirect('/level')->with('success', 'Data level berhasil disimpan');
+        return redirect('/admin/level')->with('success', 'Data level berhasil disimpan');
     }
 
     public function show(String $id){
@@ -110,12 +109,12 @@ class LevelController extends Controller
 
         $activeMenu = 'level';
 
-        return view('level.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
+        return view('admin.level.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'level' => $level, 'activeMenu' => $activeMenu]);
     }
 
     public function update(Request $request, String $id){
         $request->validate([
-            'level_kode' => 'required|string|min:3|unique:m_levels,level_kode,' . $id . ',level_id',
+            'level_kode' => 'required|string|min:3|unique:levels,level_kode,' . $id . ',level_id',
             'level_nama' => 'required|string|max:100',
         ]);
 
@@ -124,20 +123,20 @@ class LevelController extends Controller
             'level_nama' => $request->level_nama,
         ]);
 
-        return redirect('/level')->with('success', 'Data level berhasil diubah');
+        return redirect('/admin/level')->with('success', 'Data level berhasil diubah');
     }
 
     public function destroy(String $id){
         $check = LevelModel::find($id);
         if (!$check) {
-            return redirect('/level')->with('error', 'Data level tidak ditemukan');
+            return redirect('admin/level')->with('error', 'Data level tidak ditemukan');
         }
 
         try {
             LevelModel::destroy($id);
-            return redirect('/level')->with('success', 'Data level berhasil dihapus');
+            return redirect('admin/level')->with('success', 'Data level berhasil dihapus');
         }catch(\Illuminate\Database\QueryException $e) {
-            return redirect('/level')->with('error', 'Data level gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+            return redirect('admin/level')->with('error', 'Data level gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
         }
     }
 }

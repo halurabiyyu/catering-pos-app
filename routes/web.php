@@ -8,6 +8,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ Route::group(['middleware' => ['auth']], function(){
             Route::post('/', [LevelController::class, 'store'])->name('level.store');
             Route::get('/{id}', [LevelController::class, 'show'])->name('level.show');
             Route::get('/{id}/edit', [LevelController::class, 'edit'])->name('level.edit');
-            Route::put('/', [LevelController::class, 'update'])->name('level.update');
+            Route::put('/{id}', [LevelController::class, 'update'])->name('level.update');
             Route::delete('/{id}', [LevelController::class, 'destroy'])->name('level.destroy');
         });
         Route::group(['prefix'=> 'user'], function(){
@@ -57,8 +58,18 @@ Route::group(['middleware' => ['auth']], function(){
             Route::post('/', [UserController::class, 'store'])->name('user.store');
             Route::get('/{id}', [UserController::class, 'show'])->name('user.show');
             Route::get('/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
-            Route::put('/', [UserController::class, 'update'])->name('user.update');
+            Route::put('/{id}', [UserController::class, 'update'])->name('user.update');
             Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+        });
+
+        Route::group(['prefix'=> 'kategori'], function (){
+            Route::get('/', [KategoriController::class, 'index'])->name('kategori.index');
+            Route::post('/list', [KategoriController::class, 'list'])->name('kategori.list');
+            Route::get('/create', [KategoriController::class, 'create'])->name('kategori.create');
+            Route::get('/', [KategoriController::class, 'store'])->name('kategori.store');
+            Route::get('/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+            Route::get('/', [KategoriController::class, 'update'])->name('kategori.update');
+            Route::get('/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
         });
         
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');

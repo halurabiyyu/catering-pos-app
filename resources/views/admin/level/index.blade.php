@@ -8,7 +8,18 @@
     <div class="card-tools"></div>
   </div>
   <div class="card-body">
+    @if (session('success'))
+    <div class="alert alert-success">
+      {{session('success')}}
+    </div>
+    @else
+    <div class="alert alert-error">
+      {{session('error')}}
+    </div>
+        
+    @endif
     <div class="table-responsive">
+      <a href="{{route('level.create')}}" class="btn btn-success">Tambah</a>
       <table id="levelTable" class="table table-striped">
         <thead>
           <tr>
