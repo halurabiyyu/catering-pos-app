@@ -7,7 +7,7 @@
     <title>Catering - Point of Sales</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="icon" href="{{asset('asset/catering-logo.svg')}}">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -43,8 +43,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ url('/')}}" class="brand-link">
-      <img src="{{asset('adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('/')}}" class="brand-link text-white">
+      <img src="{{asset('asset/catering-logo.svg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Catering - ADMIN</span>
     </a>
 
