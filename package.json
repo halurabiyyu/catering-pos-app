@@ -10,5 +10,8 @@
         "datatables.net": "^2.0.8",
         "laravel-vite-plugin": "^1.0.0",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.3"
     }
 }

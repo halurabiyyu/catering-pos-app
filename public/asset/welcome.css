@@ -4,6 +4,7 @@ body {
 .bg-navbar{
     background-color: #EDF1D6;
 }
+
 .bg-soft{
     background-color: #EDF1D6;
 }
@@ -41,16 +42,6 @@ h1{
 .color-text-p{
     color: #609966
 }
-.container-img {  display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr; 
-    gap: 0px 0px;
-    grid-auto-flow: row;
-}
-
-.thumb { grid-area: 1 / 1 / 3 / 3; }
-
-.thimb { grid-area: 2 / 2 / 4 / 4; }
 
 .container-menu {  display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
@@ -71,8 +62,11 @@ h1{
 .tes6 { grid-area: tes6; }
 
 .img-menu{
-    width: 200px;
-    height: 200px; /* Menambahkan transisi untuk efek yang lebih halus */
+    width: 135px;
+    max-width: 200px;
+    height: 135px; /* Menambahkan transisi untuk efek yang lebih halus */
+    max-height: 200px;
+    
 }
 
 
@@ -88,9 +82,9 @@ h1{
     }
 }
 
-@media (max-width: 576px) {
+@media (min-width: 1200px) {
     .img-menu{
-        max-width: 135px;
-        height: 135px;
+        width: 200px;
+        height: 200px;
     }
 }
