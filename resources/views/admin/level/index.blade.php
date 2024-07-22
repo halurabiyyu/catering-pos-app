@@ -12,15 +12,15 @@
     <div class="alert alert-success">
       {{session('success')}}
     </div>
-    @else
+    @endif
+    @if(session('error'))
     <div class="alert alert-error">
       {{session('error')}}
     </div>
-        
     @endif
     <div class="table-responsive">
       <a href="{{route('level.create')}}" class="btn btn-success">Tambah</a>
-      <table id="levelTable" class="table table-striped">
+      <table id="levelTable" class="table table-hover">
         <thead>
           <tr>
             <th>Nomor</th>
@@ -36,7 +36,7 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
 @endpush
 
 @push('js')
