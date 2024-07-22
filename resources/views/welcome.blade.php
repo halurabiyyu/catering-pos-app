@@ -110,7 +110,7 @@
         
         </style>
 </head>
-<body>
+<body class="">
     <nav class="navbar fixed-top navbar-expand-lg transparent-navbar">
         <div class="container-fluid">
             <a class="navbar-brand color-text-navbar" href="#home"><img src="{{asset('asset/catering-logo.svg')}}" style="width: 50px; height:50px;" alt="catering-logo"></a>
@@ -175,23 +175,23 @@
                     <a href="" class="btn button-orange">Lihat semua menu</a>
                 </div>
                 <div class="container-menu m-auto py-2 px-5">
-                    <div data-aos="fade-right" data-aos-duration="1000" class="tes1 m-1">
-                        <img src="{{asset('asset/slide2.jpg')}}" class="img-menu rounded" alt="menu-1">
+                    <div data-aos="fade-right" data-aos-duration="1000" class="img-menu rounded tes1 m-1">
+                        <img src="{{asset('asset/slide2.jpg')}}" class="rounded" style="width:100%; height:100%;" alt="menu-1">
                     </div>
-                    <div data-aos="fade-right" class="tes2 m-1" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide3.jpg')}}" class="img-menu rounded" alt="menu-2">
+                    <div data-aos="fade-right" class="tes2 m-1 img-menu rounded" data-aos-duration="1000">
+                        <img src="{{asset('asset/slide3.jpg')}}" class=" rounded" alt="menu-2">
                     </div>
-                    <div class="tes3 m-1" data-aos="fade-right" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide4.jpg')}}" class="img-menu rounded" alt="menu-3">
+                    <div class="tes3 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                        <img src="{{asset('asset/slide4.jpg')}}" class=" rounded" alt="menu-3">
                     </div>
-                    <div class="tes4 m-1" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide5.jpg')}}" class="img-menu rounded" alt="menu-4">
+                    <div class="tes4 m-1 img-menu rounded" data-aos="fade-left" data-aos-duration="1000">
+                        <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-4">
                     </div>
-                    <div class="tes5 m-1" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide2.jpg')}}" class="img-menu rounded" alt="menu-5">
+                    <div class="tes5 m-1 img-menu rounded" data-aos="fade-left" data-aos-duration="1000">
+                        <img src="{{asset('asset/slide2.jpg')}}" class=" rounded" alt="menu-5">
                     </div>
-                    <div class="tes6 m-1" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide5.jpg')}}" class="img-menu rounded" alt="menu-6">
+                    <div class="tes6 m-1 img-menu rounded" data-aos="fade-left" data-aos-duration="1000">
+                        <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
                     </div>
                 </div>
             </div>

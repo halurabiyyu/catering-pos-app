@@ -66,9 +66,20 @@ h1{
     max-width: 200px;
     height: 135px; /* Menambahkan transisi untuk efek yang lebih halus */
     max-height: 200px;
-    
+    overflow: hidden; /* Hide overflowing content */
+    /* transition: transform 0.5s ease-in-out; */
+}
+.img-menu img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease-in-out;
 }
 
+.img-menu img:hover{
+    transform: scale(1.1); /* Zooms in the image content */
+}
 
 
 @media (max-width: 767px) {
