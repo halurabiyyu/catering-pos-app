@@ -42,7 +42,7 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            $('#levelTable').DataTable({
+            var dataLevel   = $('#levelTable').DataTable({
                 serverSide: true,
                 ajax: {
                     url: "{{ url('admin/level/list') }}",

@@ -1,70 +1,105 @@
-<div class="sidebar">
-
-    <!-- SidebarSearch Form -->
-    <div class="form-inline mt-2">
-      <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-          </button>
-        </div>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="../index.html">
+        <i class="icon-grid menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <i class="icon-layout menu-icon"></i>
+        <span class="menu-title">Daftar Level</span>
+        {{-- <i class="menu-arrow"></i> --}}
+      </a>
+      {{-- <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="../pages/ui-features/buttons.html">Buttons</a></li>
+          <li class="nav-item"> <a class="nav-link" href="../pages/ui-features/dropdowns.html">Dropdowns</a></li>
+          <li class="nav-item"> <a class="nav-link" href="../pages/ui-features/typography.html">Typography</a></li>
+        </ul>
+      </div> --}}
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+        {{-- <i class="icon-columns menu-icon"></i> --}}
+        <i class="icon-head menu-icon"></i>
+        <span class="menu-title">Daftar Users</span>
+        {{-- <i class="menu-arrow"></i> --}}
+      </a>
+      {{-- <div class="collapse" id="form-elements">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a class="nav-link" href="../pages/forms/basic_elements.html">Basic Elements</a></li>
+        </ul>
+      </div> --}}
+    </li>
+    {{-- <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+        <i class="icon-bar-graph menu-icon"></i>
+        <span class="menu-title">Charts</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="charts">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="../pages/charts/chartjs.html">ChartJs</a></li>
+        </ul>
       </div>
-    </div>
-
-    <!-- Sidebar Menu -->
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-        <li class="nav-item">
-          <a href="{{url('/')}}" class="nav-link {{($activeMenu == 'dashboard') ? 'active' : ''}}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>
-              Dashboardp
-            </p>
-          </a>
-        </li>
-        <li class="nav-header">Data Pengguna</li>        
-        <li class="nav-item">
-          <a href="{{ url('/level')}}" class="nav-link {{($activeMenu == 'level') ? 'active' : ''}}">
-            <i class="nav-icon fas fa-layer-group"></i>
-            <p>Level User</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ url('/user')}}" class="nav-link {{($activeMenu == 'user') ? 'active' : ''}}">
-            <i class="nav-icon far fa-user"></i>
-            <p>Data User</p>
-          </a>
-        </li>
-        <li class="nav-header">Data Barang</li>
-        <li class="nav-item">
-          <a href="{{ url('/kategori')}}" class="nav-link {{($activeMenu == 'kategori') ? 'active' : ''}}">
-            <i class="nav-icon far fa-bookmark"></i>
-            <p>Kategori Barang</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ url('/barang')}}" class="nav-link {{($activeMenu == 'barang') ? 'active' : ''}}">
-            <i class="nav-icon far fa-list-alt"></i>
-            <p>Data Barang</p>
-          </a>
-        </li>
-        <li class="nav-header">Data Transaksi</li>
-        <li class="nav-item">
-          <a href="{{ url('/stok')}}" class="nav-link {{($activeMenu == 'stok') ? 'active' : ''}}">
-            <i class="nav-icon fas fa-cubes"></i>
-            <p>Stok Barang</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ url('/penjualan')}}" class="nav-link {{($activeMenu == 'penjualan') ? 'active' : ''}}">
-            <i class="nav-icon fas fa-cash-register"></i>
-            <p>Transaksi Penjualan</p>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.sidebar-menu -->
-  </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+        <i class="icon-grid-2 menu-icon"></i>
+        <span class="menu-title">Tables</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="tables">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="../pages/tables/basic-table.html">Basic table</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+        <i class="icon-contract menu-icon"></i>
+        <span class="menu-title">Icons</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="icons">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="../pages/icons/mdi.html">Mdi icons</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+        <i class="icon-head menu-icon"></i>
+        <span class="menu-title">User Pages</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="auth">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="../pages/samples/login.html"> Login </a></li>
+          <li class="nav-item"> <a class="nav-link" href="../pages/samples/register.html"> Register </a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+        <i class="icon-ban menu-icon"></i>
+        <span class="menu-title">Error pages</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="error">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" href="../pages/samples/error-404.html"> 404 </a></li>
+          <li class="nav-item"> <a class="nav-link" href="../pages/samples/error-500.html"> 500 </a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="../../../docs/documentation.html">
+        <i class="icon-paper menu-icon"></i>
+        <span class="menu-title">Documentation</span>
+      </a>
+    </li> --}}
+  </ul>
+</nav>

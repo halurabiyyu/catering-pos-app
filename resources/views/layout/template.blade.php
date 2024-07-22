@@ -1,91 +1,82 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{config('app.name', 'Catering - App')}}</title>
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css')}}">
-    
-    {{-- Datatables --}}
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
-    
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css')}}">
-
-    @stack('css')
-</head>
-<body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-  {{-- Navbar  --}}
-  @include('layout.header')
-  {{-- /navbar  --}}
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="{{ url('/')}}" class="brand-link">
-      <img src="{{asset('adminlte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Catering - App</span>
-    </a>
-
-    <!-- Sidebar -->
-    @include('layout.sidebar')
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    @include('layout.breadcrumb')
-
-    <!-- Main content -->
-    <section class="content">
-
-      @yield('content')
-
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  @include('layout.footer')
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="{{asset('adminlte/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-{{-- Datatables & Plugin  --}}
-<script src="{{asset('adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/jszip/jszip.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/pdfmake/pdfmake.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/pdfmake/vfs_fonts.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
-
-<!-- AdminLTE App -->
-<script src="{{ asset('adminlte/dist/js/adminlte.min.js')}}"></script>
-<script>
-    $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
-</script>
-@stack('js')
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/vendors/feather/feather.css')}}">
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/vendors/ti-icons/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/vendors/css/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/vendors/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- <link rel="stylesheet" href="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css"> -->
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css')}}">
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/vendors/ti-icons/css/themify-icons.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('skydash/src/assets/js/select.dataTables.min.css')}}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{asset('skydash/src/assets/css/style.css')}}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{asset('skydash/src/assets/images/favicon.png')}}" />
+  </head>
+  <body>
+    <div class="wrapper">
+        <!-- partial:partials/_navbar.html -->
+        @include('layout.header')
+    </div>
+      
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        @include('layout.sidebar')
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                {{-- @include('layout.breadcrumb') --}}
+            
+                <!-- Main content -->
+                <section class="content">
+            
+                  @yield('content')
+            
+                </section>
+                <!-- /.content -->
+              </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          @include('layout.footer')
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{{asset('skydash/src/assets/vendors/js/vendor.bundle.base.js')}}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{asset('skydash/src/assets/vendors/chart.js/chart.umd.js')}}"></script>
+    <script src="{{asset('skydash/src/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+    <!-- <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script> -->
+    <script src="{{asset('skydash/src/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script>
+    <script src="{{asset('skydash/src/assets/js/dataTables.select.min.js')}}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{asset('skydash/src/assets/js/off-canvas.js')}}"></script>
+    <script src="{{asset('skydash/src/assets/js/template.js')}}"></script>
+    <script src="{{asset('skydash/src/assets/js/settings.js')}}"></script>
+    <script src="{{asset('skydash/src/assets/js/todolist.js')}}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{{asset('skydash/src/assets/js/jquery.cookie.js')}}" type="text/javascript"></script>
+    <script src="{{asset('skydash/src/assets/js/dashboard.js')}}"></script>
+    <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
+    <!-- End custom js for this page-->
+  </body>
 </html>

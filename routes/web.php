@@ -24,6 +24,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/custom', function () {
+    return view('layout.template');
+});
+
+
+
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome.index');
 
 

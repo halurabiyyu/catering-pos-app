@@ -4,30 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{{asset('asset/catering-logo.svg')}}">
+    <link rel="icon" href="{{asset('asset/logo-cook.svg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Login - Catering App</title>
     <style>
         .bg-login{
-            background-color: #EDF1D6;
+            background-image: url("{{asset('asset/slide1.jpg')}}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         
         .box-login{
-            background-color: transparent;
-            backdrop-filter: blur(50%);
+            background-color: #0a0a0a6b;
+            /* backdrop-filter: blur(50%); */
         }
         .text-login{
-            color: #9DC08B;
+            color: #FFB22C;
         }
-        .btn-login{
-            background-color: #9DC08B;
-            color: white;
-            /* color: #EDF1D6; */
+        .button-login{
+            background-color: transparent;
+            border: #FFB22C solid 2px;
+            color: #FFB22C;
         }
-        .btn-login:hover{
-            background-color: #609966;
+        .button-login:hover{
+            background-color: #FFB22C;
             color: white;
+        }
+
+        .acs-form{
+            background-color: black;
+            color:#FFB22C;
         }
 
     </style>
@@ -35,15 +43,14 @@
 <body>
     <main>
         <div class="container-fluid bg-login " style="height: 100vh">
-            <a class="btn btn-login rounded-pill my-1 shadow-sm" href="{{route('welcome.index')}}"><</a>
+            <a class="btn button-login rounded-pill my-1 shadow-sm" href="{{route('welcome.index')}}"><</a>
             <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 75vh">
-                <div class="bg-white shadow p-2 rounded bg-opacity-25">
+                <div class="bg-black shadow p-2 rounded bg-opacity-50">
                     <h1 class="text-login fw-bold text-center">Log In</h1>
                     <form action="{{url('proses_login')}}" method="POST" class="px-5 py-2">
                         @csrf
-                        <small class="text-login">Belum mempunyai akun? <a href="{{route('register')}}">register disini</a></small>
+                        <small class="text-login">Belum mempunyai akun? <a href="{{route('register')}}" class="text-login">register disini</a></small>
                         <div class="input-group">
-                            <span class="input-group-text btn-login">@</span>
                             <div class="form-floating">
                               <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInputGroup1" name="email" placeholder="Email" value="{{ old('email') }}">
                               <label for="floatingInputGroup1" class="text-login">Email</label>
@@ -53,7 +60,6 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                         <div class="input-group my-1">
-                            <span class="input-group-text btn-login">@</span>
                             <div class="form-floating">
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="floatingInputGroup2" name="password" placeholder="Password" value="{{ old('password') }}">
                                 <label for="floatingInputGroup2" class="text-login">Password</label>
@@ -63,7 +69,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror           
                         <div class="container-fluid d-flex justify-content-center">
-                            <button type="submit" class="btn btn-login my-1 shadow-sm">Log In</button>
+                            <button type="submit" class="btn button-login my-1 shadow-sm">Log In</button>
                         </div>
                     </form>
                 </div>

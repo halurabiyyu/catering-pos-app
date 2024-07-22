@@ -11,7 +11,11 @@
     <title>Register - Catering App</title>
     <style>
         .bg-register{
-            background-color: #EDF1D6;
+            /* background-color: #EDF1D6; */
+            background-image: url("{{asset('asset/slide1.jpg')}}");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
         }
         
         .box-register{
@@ -19,15 +23,16 @@
             backdrop-filter: blur(50%);
         }
         .text-register{
-            color: #9DC08B;
+            color:#FFB22C;
         }
         .btn-register{
-            background-color: #9DC08B;
-            color: white;
+            background-color: transparent;
+            color:#FFB22C;
+            border: #FFB22C solid 2px;
             /* color: #EDF1D6; */
         }
         .btn-register:hover{
-            background-color: #609966;
+            background-color: #FFB22C;
             color: white;
         }
 
@@ -38,7 +43,7 @@
         <div class="container-fluid bg-register " style="height: 100vh">
             <a class="btn btn-register rounded-pill my-1 shadow-sm" href="{{route('welcome.index')}}"><</a>
             <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 75vh">
-                <div class="bg-white shadow p-2 rounded bg-opacity-25">
+                <div class="bg-black shadow p-2 rounded bg-opacity-50">
                     <h1 class="text-register fw-bold text-center">Register</h1>
                     @if (session('success'))
                         <div class="alert alert-success">{{session('success')}}</div>
@@ -47,9 +52,9 @@
                     @endif
                     <form action="{{route('proses_register')}}" method="POST" class="px-5 py-2">
                         @csrf
-                        <small class="text-register">Sudah mempunyai akun? <a href="{{route('login')}}">login disini</a></small>
+                        <small class="text-register">Sudah mempunyai akun? <a href="{{route('login')}}" class="text-register">login disini</a></small>
                         <div class="input-group mb-1">
-                            <span class="input-group-text btn-register">@</span>
+                        
                             <div class="form-floating">
                               <input type="text" class="form-control @error('nama') is-invalid @enderror" id="name" placeholder="Nama" name="nama">
                               <label for="name" class="text-register" required>Nama</label>
@@ -59,7 +64,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror                        
                         <div class="input-group mb-1">
-                            <span class="input-group-text btn-register">@</span>
+                        
                             <div class="form-floating">
                               <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email">
                               <label for="email" class="text-register" required>Email</label>
@@ -69,7 +74,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror                          
                         <div class="input-group mb-1">
-                            <span class="input-group-text btn-register">@</span>
+                        
                             <div class="form-floating">
                               <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" placeholder="Email">
                               <label for="username" class="text-register" required>Username</label>
@@ -79,7 +84,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                         <div class="input-group mb-1">
-                            <span class="input-group-text btn-register">@</span>
+                        
                             <div class="form-floating">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
                                 <label for="password" class="text-register" required>Password</label>
@@ -89,7 +94,7 @@
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                         <div class="input-group mb-1">
-                            <span class="input-group-text btn-register">@</span>
+                        
                             <div class="form-floating">
                                 <input name="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" placeholder="Confirm Password">
                                 <label for="password_confirmation" class="text-register" required>Confirm Password</label>
