@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
 use App\Models\LevelModel;
+use Exception;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -88,20 +89,30 @@ class UserController extends Controller
     }
 
     public function show(String $id){
-        $user = UserModel::with('level')->find($id);
-
-        $breadcrumb = (object)[
-            'title' => 'Detail User',
-            'list' => ['Home', 'User', 'Detail'],
-        ];
-
-        $page = (object)[
-            'title' => 'Detail User'
-        ];
-
-        $activeMenu = 'user';
-
-        return view('admin.user.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
+        try {
+            //code...
+            // if ($id > UserModel::count()) {
+            //     $this->index();
+            // }
+            $user = UserModel::with('level')->findOrFail($id);
+            if (!$user) {
+                $this->index();   
+            }
+            $breadcrumb = (object)[
+                'title' => 'Detail User',
+                'list' => ['Home', 'User', 'Detail'],
+            ];
+    
+            $page = (object)[
+                'title' => 'Detail User'
+            ];
+    
+            $activeMenu = 'user';
+    
+            return view('admin.user.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
+        } catch (Exception $e) {
+            return view('errors::404');
+        }
     }
 
     public function edit(String $id){

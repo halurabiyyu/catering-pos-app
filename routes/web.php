@@ -25,7 +25,8 @@ Route::get('/', function () {
 });
 
 Route::get('/custom', function () {
-    return view('layout.template');
+    return view('layout.template
+    ');
 });
 
 
