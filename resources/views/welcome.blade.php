@@ -12,6 +12,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Catering - Point of Sales</title>
     <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
         .bg-image{
             background-image: url("{{ asset('asset/slide1.jpg') }}");
             background-repeat: no-repeat;
@@ -35,6 +38,35 @@
 
         .content {
             position: relative;
+            z-index: 2;
+        }
+
+        .bg-bw {
+            position: relative; /* Make sure the container has position relative */
+        }
+
+        .bg-bw::before {
+            content: "";
+            background-image: url("{{ asset('asset/bw-bg.jpg') }}");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+            opacity: 0.5; /* Adjust the opacity as needed */
+            z-index: 1; /* Ensure it is behind the content */
+        }
+
+        .bg-bw-content {
+            position: relative; /* Ensure the content is positioned correctly */
+            z-index: 2; /* Ensure the content is above the background */
+        }
+
+        .rating-z{
             z-index: 2;
         }
 
@@ -107,7 +139,18 @@
             background-color: #FFB22C;
             color: white;
         }
-        
+        .count-number {
+            animation: count-animation 0.5s ease-out forwards;
+        }
+
+        @keyframes count-animation {
+            from {
+                transform: translateY(-50%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
         </style>
 </head>
 <body class="">
@@ -144,23 +187,24 @@
             </div>
         </div>
         <div class="container-fluid bg-body-tertiary py-5">
-            <div class="rounded-pill m-auto p-3 bg-white shadow text-black px-5 d-flex align-items-center justify-content-center container"  id="rating" style="height: 15vh;">
-                <div class="row">
+            <div class="bg-bw m-auto p-3 rounded-3 bg-white shadow text-black px-5 d-flex align-items-center justify-content-center container"  id="rating" style="height: 15vh;">
+                <div class="row bg-bw-content">
                     <div class="col">
                         <div class="d-flex justify-content-lg-evenly">
-                            <h1 class="">4.8</h1>
-                            <img src="{{asset('asset/star-rating.svg')}}" style="width: 45px; height:45px;" alt="">
+                            @for ($i = 0; $i < 5; $i++)
+                            <img src="{{asset('asset/star-rating.svg')}}" data-aos="zoom-out" data-aos-duration="1000" style="width: 45px; height:45px;" alt="">    
+                            @endfor
                         </div>
                     </div>
                     <div class="col">
                         <div class="d-flex justify-content-lg-evenly">
-                            <h1 class="">30+</h1>
+                            <h1 class="fw-bold count-number" data-target="30">0</h1><h1 class="fw-bold">+</h1>
                             <img src="{{asset('asset/sum-menu.svg')}}" style="width: 45px; height:45px;" alt="">
                         </div>
                     </div>
                     <div class="col">
                         <div class="d-flex justify-content-lg-evenly">
-                            <h1 class="">100</h1>
+                            <h1 class="fw-bold fs-1 count-number" data-target="100">0</h1>
                             <img src="{{asset('asset/sum-cust.svg')}}" style="width: 45px; height:45px;" alt="">
                         </div>
                     </div>
@@ -168,31 +212,18 @@
             </div>
         </div>
         <div class="container-fluid bg-body-tertiary pb-5">
-            <div id="menu" class="container d-flex flex-column flex-column-reverse flex-lg-row-reverse align-items-center box-menu rounded shadow bg-white">
-                <div class="px-5 m-auto text-wrap">
+            <div id="menu" class="container d-flex flex-column flex-column-reverse flex-lg-row-reverse align-items-center box-menu rounded shadow-sm bg-white">
+                <div class="px-5 m-auto text-wrap" data-aos="fade-left" data-aos-duration="1000">
                     <h1 class="text-black fw-bold text-start fs-1">Menu Kita</h1>
                     <p class="">Nikmati beragam pilihan hidangan lezat kami yang dibuat dengan bahan-bahan segar berkualitas. Dari masakan tradisional hingga kuliner internasional, kami menyajikan cita rasa autentik untuk memenuhi selera Anda. Temukan variasi menu yang menggugah selera untuk setiap acara istimewa Anda.</p>
                     <a href="" class="btn button-orange">Lihat semua menu</a>
                 </div>
                 <div class="container-menu m-auto py-2 px-5">
-                    <div data-aos="fade-right" data-aos-duration="1000" class="img-menu rounded tes1 m-1">
-                        <img src="{{asset('asset/slide2.jpg')}}" class="rounded" style="width:100%; height:100%;" alt="menu-1">
-                    </div>
-                    <div data-aos="fade-right" class="tes2 m-1 img-menu rounded" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide3.jpg')}}" class=" rounded" alt="menu-2">
-                    </div>
-                    <div class="tes3 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide4.jpg')}}" class=" rounded" alt="menu-3">
-                    </div>
-                    <div class="tes4 m-1 img-menu rounded" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-4">
-                    </div>
-                    <div class="tes5 m-1 img-menu rounded" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide2.jpg')}}" class=" rounded" alt="menu-5">
-                    </div>
-                    <div class="tes6 m-1 img-menu rounded" data-aos="fade-left" data-aos-duration="1000">
-                        <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
-                    </div>
+                    @for ($i = 1; $i <= 6; $i++)
+                        <div class="tes{{$i}} m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="{{asset('asset/slide'.$i.'.jpg')}}" class=" rounded" alt="menu-6">
+                        </div>
+                    @endfor
                 </div>
             </div>
         </div>
@@ -250,6 +281,24 @@
             }
         });
     </script>
+    <script>
+        window.addEventListener('load', function() {
+        const countNumbers = document.querySelectorAll('.count-number');
 
+        countNumbers.forEach(countNumber => {
+            const target = parseInt(countNumber.getAttribute('data-target'));
+
+            let currentNumber = 0;
+            const counter = setInterval(() => {
+            if (currentNumber < target) {
+                currentNumber++;
+                countNumber.textContent = currentNumber;
+            } else {
+                clearInterval(counter);
+            }
+            }, 30); // Sesuaikan kecepatan animasi dengan mengubah nilai ini (dalam milidetik)
+        });
+        });
+    </script>
 </body>
 </html>

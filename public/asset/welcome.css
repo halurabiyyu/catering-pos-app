@@ -1,47 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
-.bg-navbar{
-    background-color: #EDF1D6;
-}
-
-.bg-soft{
-    background-color: #EDF1D6;
-}
-.bg-semi-soft{
-    background-color: #9DC08B;
-}
-.bg-medium{
-    background-color: #609966;
-}
-.bg-hard{
-    background-color: #40513B;
-}
-.color-text-soft{
-    color: #EDF1D6;
-}
-.color-text-footer{
-    color: #9DC08B;
-}
-
-.color-text-navbar{
-    color: #609966;
-}
-.color-text-navbar:hover{
-    color: #40513B;
-}
-.color-text-navbar:active{
-    color: #40513B
-}
-.color-text-h1{
-    color: #40513B
-}
-h1{
-    color: #40513B;
-}
-.color-text-p{
-    color: #609966
-}
 
 .container-menu {  display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
