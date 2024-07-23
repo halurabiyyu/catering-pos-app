@@ -153,8 +153,8 @@
         }
         </style>
 </head>
-<body class="">
-    <nav class="navbar fixed-top navbar-expand-lg transparent-navbar">
+<body class="overflow-x-hidden">
+    <nav class="navbar fixed-top overflow-x-hidden navbar-custom navbar-expand-lg transparent-navbar">
         <div class="container-fluid">
             <a class="navbar-brand color-text-navbar" href="#home"><img src="{{asset('asset/catering-logo.svg')}}" style="width: 50px; height:50px;" alt="catering-logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -168,32 +168,36 @@
                     <li class="nav-item">
                         <a class="nav-link color-text-navbar" href="#menu">Menu</a>
                     </li>
-                <li class="nav-item">
-                    <a class="nav-link color-text-navbar" href="#contact">Kontak</a>
+                    <li class="nav-item">
+                        <a class="nav-link color-text-navbar" href="#contact">Kontak</a>
                 </li>
             </ul>
             <a class="btn button-login shadow" href="{{route('login')}}">Login</a>
-            </div>
         </div>
-    </nav>
-    <main class="m-auto">
-        <div class="container-fluid bg-image" id="home">
-            <div class="content container-fluid p-0 d-flex flex-column-reverse flex-lg-row align-items-center" style="height:85vh;">
-                <div class="px-5 mb-5 box">
-                    <h1 class="fw-bold text-white">Mam Catering</h1>
-                    <p class="text-white">Kami menyajikan solusi kuliner terlengkap untuk setiap acara Anda. Dengan lebih dari 30 pilihan menu lezat, kami menawarkan variasi rasa yang akan memanjakan lidah semua tamu. Dari hidangan tradisional hingga internasional, kami memiliki semuanya!</p>
-                    <a href="{{route('checkout.index')}}" class="btn button-login">Pesan Sekarang</a>
-                </div>
-            </div>
+    </div>
+</nav>
+<main class="">
+<div class="container-fluid bg-image" id="home">
+    <div class="content container-fluid p-0 d-flex flex-column-reverse flex-lg-row align-items-center" style="height:85vh;">
+        <div class="px-5 mb-5 box">
+            <h1 class="fw-bold text-white">Mam Catering</h1>
+            <p class="text-white">Kami menyajikan solusi kuliner terlengkap untuk setiap acara Anda. Dengan lebih dari 30 pilihan menu lezat, kami menawarkan variasi rasa yang akan memanjakan lidah semua tamu. Dari hidangan tradisional hingga internasional, kami memiliki semuanya!</p>
+            <a href="{{route('checkout.index')}}" class="btn button-login">Pesan Sekarang</a>
+        </div>
+    </div>
         </div>
         <div class="container-fluid bg-body-tertiary py-5">
             <div class="bg-bw m-auto p-3 rounded-3 bg-white shadow text-black px-5 d-flex align-items-center justify-content-center container"  id="rating" style="height: 15vh;">
                 <div class="row bg-bw-content">
                     <div class="col">
                         <div class="d-flex justify-content-lg-evenly">
-                            @for ($i = 0; $i < 5; $i++)
+                            
                             <img src="{{asset('asset/star-rating.svg')}}" data-aos="zoom-out" data-aos-duration="1000" style="width: 45px; height:45px;" alt="">    
-                            @endfor
+                            <img src="{{asset('asset/star-rating.svg')}}" data-aos="zoom-out" data-aos-duration="1000" style="width: 45px; height:45px;" alt="">    
+                            <img src="{{asset('asset/star-rating.svg')}}" data-aos="zoom-out" data-aos-duration="1000" style="width: 45px; height:45px;" alt="">    
+                            <img src="{{asset('asset/star-rating.svg')}}" data-aos="zoom-out" data-aos-duration="1000" style="width: 45px; height:45px;" alt="">    
+                            <img src="{{asset('asset/star-rating.svg')}}" data-aos="zoom-out" data-aos-duration="1000" style="width: 45px; height:45px;" alt="">    
+                            
                         </div>
                     </div>
                     <div class="col">
@@ -216,14 +220,29 @@
                 <div class="px-5 m-auto text-wrap" data-aos="fade-left" data-aos-duration="1000">
                     <h1 class="text-black fw-bold text-start fs-1">Menu Kita</h1>
                     <p class="">Nikmati beragam pilihan hidangan lezat kami yang dibuat dengan bahan-bahan segar berkualitas. Dari masakan tradisional hingga kuliner internasional, kami menyajikan cita rasa autentik untuk memenuhi selera Anda. Temukan variasi menu yang menggugah selera untuk setiap acara istimewa Anda.</p>
-                    <a href="" class="btn button-orange">Lihat semua menu</a>
+                    <a href="" class="btn button-orange mb-2">Lihat semua menu</a>
                 </div>
                 <div class="container-menu m-auto py-2 px-5">
-                    @for ($i = 1; $i <= 6; $i++)
-                        <div class="tes{{$i}} m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
-                            <img src="{{asset('asset/slide'.$i.'.jpg')}}" class=" rounded" alt="menu-6">
+                    {{-- @for ($i = 1; $i <= 6; $i++) --}}
+                        <div class="tes1 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
                         </div>
-                    @endfor
+                        <div class="tes2 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
+                        </div>
+                        <div class="tes3 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
+                        </div>
+                        <div class="tes4 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
+                        </div>
+                        <div class="tes5 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
+                        </div>
+                        <div class="tes6 m-1 img-menu rounded" data-aos="fade-right" data-aos-duration="1000">
+                            <img src="{{asset('asset/slide5.jpg')}}" class=" rounded" alt="menu-6">
+                        </div>
+                    {{-- @endfor --}}
                 </div>
             </div>
         </div>
