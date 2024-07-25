@@ -65,17 +65,22 @@ class LevelController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
-            'level_kode' => 'required|string|min:3|unique:levels,level_kode',
-            'level_nama' => 'required|string|max:100',
-        ]);
+        try {
+            $request->validate([
+                'level_kode' => 'required|string|min:3|unique:levels,level_kode',
+                'level_nama' => 'required|string|max:100',
+            ]);
+    
+            LevelModel::create([
+                'level_kode' => $request->level_kode,
+                'level_nama' => $request->level_nama,
+            ]);
+            return redirect('/admin/level')->with('success', 'Data level berhasil disimpan');
+        } catch (\Throwable $th) {
+            return redirect('/admin/level')->with('error', 'Data level gagal disimpan');
+            //throw $th;
+        }
 
-        LevelModel::create([
-            'level_kode' => $request->level_kode,
-            'level_nama' => $request->level_nama,
-        ]);
-
-        return redirect('/admin/level')->with('success', 'Data level berhasil disimpan');
     }
 
     public function show(String $id){
