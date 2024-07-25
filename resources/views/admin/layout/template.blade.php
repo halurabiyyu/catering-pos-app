@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>{{$breadcrumb->title}} | Catering - Admin </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/vendors/feather/feather.css')}}">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/vendors/css/vendor.bundle.base.css')}}">
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <!-- endinject -->
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
     <!-- Plugin css for this page -->
@@ -26,14 +27,14 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/css/style.css')}}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset('skydash/dist/assets/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('asset/logo-cook.svg')}}" />
     @stack('css')
   </head>
   <body>
-    <div class="wrapper">
+    {{-- <div class="wrapper"> --}}
         <!-- partial:partials/_navbar.html -->
         @include('admin.layout.header')
-    </div>
+    {{-- </div> --}}
       
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
@@ -82,8 +83,13 @@
     <script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.min.js"></script> --}}
     {{-- <script src="{{asset('skydash/dist/assets/vendors/chart.js/Chart.min.js')}}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Import Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <!-- Import Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
     <script src="{{asset('skydash/dist/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('skydash/dist/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script> --}}
+    <script src="{{asset('skydash/dist/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
     {{-- <script src="{{asset('skydash/dist/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script> --}}
     <script src="{{asset('skydash/dist/assets/js/dataTables.select.min.js')}}"></script>
     <!-- End plugin js for this page -->
@@ -94,7 +100,7 @@
     <script src="{{asset('skydash/dist/assets/js/todolist.js')}}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    {{-- <script src="{{asset('skydash/dist/assets/js/jquery.cookie.js')}}" type="text/javascript"></script> --}}
+    <script src="{{asset('skydash/dist/assets/js/jquery.cookie.js')}}" type="text/javascript"></script>
     {{-- <script src="{{asset('skydash/dist/assets/js/dashboard.js')}}"></script> --}}
     <!-- <script src="assets/js/Chart.roundedBarCharts.js"></script> -->
     <!-- End custom js for this page-->
