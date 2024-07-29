@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/vendors/css/vendor.bundle.base.css')}}">
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/vendors/mdi/css/materialdesignicons.min.css')}}">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <!-- endinject -->
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
     <!-- Plugin css for this page -->
@@ -26,6 +25,7 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('skydash/dist/assets/css/style.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{asset('asset/logo-cook.svg')}}" />
     @stack('css')

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -77,6 +78,16 @@ Route::group(['middleware' => ['auth']], function(){
             Route::get('/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
             Route::put('/{id}', [KategoriController::class, 'update'])->name('kategori.update');
             Route::delete('/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+        });
+
+        Route::group(['prefix'=> 'food'], function (){
+            Route::get('/', [FoodController::class, 'index'])->name('food.index');
+            Route::post('/list', [FoodController::class, 'list'])->name('food.list');
+            Route::get('/create', [FoodController::class, 'create'])->name('food.create');
+            Route::post('/', [FoodController::class, 'store'])->name('food.store');
+            Route::get('/{id}/edit', [FoodController::class, 'edit'])->name('food.edit');
+            Route::put('/{id}', [FoodController::class, 'update'])->name('food.update');
+            Route::delete('/{id}', [FoodController::class, 'destroy'])->name('food.destroy');
         });
         
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
