@@ -11,7 +11,7 @@ class FoodController extends Controller
 
     public function index(){
         $breadcrumb = (object)[
-            'title' => 'Daftar food',
+            'title' => 'Daftar Makanan',
             'list' => ['Home', 'food']
         ];
 
@@ -27,14 +27,15 @@ class FoodController extends Controller
     }
 
     public function list(Request $request){
-        $foods = FoodModel::select('food_id', 'food_kode', 'food_nama');
+        $foods = FoodModel::select('food_id', 'food_code', 'food_name', 'category_id', 'food_price')
+                    ->with('category');
                     
         // if ($request->food_id) {
         //     $foods->where('food_id', $request->food_id);
         // }
 
         return DataTables::of($foods)
-            // ->addIndexColumn()
+            ->addIndexColumn()
             ->addColumn('aksi', function ($food) {  // menambahkan kolom aksi 
                 $btn = '<a href="'.url('/admin/food/' . $food->food_id . '/edit').'" class="btn btn-warning btn-sm">Edit</a> '; 
                 $btn .= '<form class="d-inline-block" method="POST" action="'. 

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('food', function(Blueprint $table) {
             $table->id('food_id');
-            $table->string('food_code');
+            $table->string('food_code')->unique();
             $table->string('food_name');
-            $table->string('food_desc');
-            $table->bigInteger('food_price');
+            $table->string('food_desc', 255);
+            $table->decimal('food_price', 10, 2);
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
             

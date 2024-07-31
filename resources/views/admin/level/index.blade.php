@@ -4,7 +4,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Halo, apakabar!!!</h3>
+    <h3 class="card-title m-auto">{{$breadcrumb->title}}</h3>
     <div class="card-tools"></div>
   </div>
   <div class="card-body">
@@ -19,7 +19,7 @@
     </div>
     @endif
     <div class="table-responsive">
-      <a href="{{route('level.create')}}" class="btn btn-success">Tambah</a>
+      <a href="{{route('level.create')}}" class="btn btn-success my-1">Tambah</a>
       <table id="levelTable" class="table table-hover">
         <thead>
           <tr>

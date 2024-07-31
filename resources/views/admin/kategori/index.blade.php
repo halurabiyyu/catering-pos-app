@@ -3,6 +3,10 @@
 @section('content')
 
 <div class="card">
+  <div class="card-header">
+    <h3 class="card-title m-auto">{{$breadcrumb->title}}</h3>
+    <div class="card-tools"></div>
+  </div>
   <div class="card-body">
     @if (session('success'))
     <div class="alert alert-success">

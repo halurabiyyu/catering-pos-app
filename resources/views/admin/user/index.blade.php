@@ -4,7 +4,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Halo, apakabar!!!</h3>
+    <h3 class="card-title m-auto">{{$breadcrumb->title}}</h3>
     <div class="card-tools"></div>
   </div>
   <div class="card-body">
@@ -18,7 +18,7 @@
       {{session('error')}}
     </div>
     @endif
-    <a href="{{route('user.create')}}" class="btn btn-success">Tambah</a>
+    <a href="{{route('user.create')}}" class="btn btn-success my-1">Tambah</a>
     <div class="table-responsive">
       <table id="userTable" class="table table-striped">
         <thead>
