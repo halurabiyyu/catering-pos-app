@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllMenuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\WelcomeController;
@@ -104,8 +105,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::group(['prefix' => 'checkout'], function(){
-    Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::group(['prefix' => 'menu'], function(){
+    Route::get('/', [AllMenuController::class, 'index'])->name('menu.index');
 });
 
 
