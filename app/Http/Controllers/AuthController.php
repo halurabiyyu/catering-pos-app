@@ -57,7 +57,7 @@ class AuthController extends Controller
                     return redirect()->intended('cashier/dashboard/');
                 }
                 else if($user->level_id == '3'){
-                    return redirect()->intended('customer/dashboard/');
+                    return redirect()->intended('/');
                 }
                 return redirect()->intended('/');
             }
