@@ -46,6 +46,11 @@
             <a class="btn button-login rounded-pill my-1 shadow-sm" href="{{route('welcome.index')}}"><</a>
             <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 75vh">
                 <div class="bg-black shadow p-2 rounded bg-opacity-50">
+                    @if (session('error'))
+                        <div class="alert alert-warning">
+                            <p>{{session('error')}}</p>
+                        </div>
+                    @endif
                     <h1 class="text-login fw-bold text-center">Log In</h1>
                     <form action="{{url('proses_login')}}" method="POST" class="px-5 py-2">
                         @csrf
