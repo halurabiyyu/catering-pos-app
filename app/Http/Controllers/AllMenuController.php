@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FoodModel;
 use Illuminate\Http\Request;
 
 class AllMenuController extends Controller
 {
     public function index(){
-        
-        return view('allMenu');
+        $food = FoodModel::latest()->get();
+
+        return view('allMenu', ['foods' => $food]);
     }
 }

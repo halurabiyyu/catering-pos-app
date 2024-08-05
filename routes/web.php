@@ -101,6 +101,11 @@ Route::group(['middleware' => ['auth']], function(){
     });
     Route::group(['middleware' => ['cek_login:3'], 'prefix' => 'customer'], function(){
         Route::get('/dashboard', [DashboardController::class, 'customer'])->name('customer.dashboard');
+
+        Route::group(['prefix' => 'checkout'], function() {
+            Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
+            Route::post('/', [CheckoutController::class, 'addCart'])->name('checkout.addCart');
+        })->middleware('cek_login');
     });
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });

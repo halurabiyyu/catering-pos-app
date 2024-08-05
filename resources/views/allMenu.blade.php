@@ -32,11 +32,6 @@
             background-color: #FFB22C;
             color: white;
         }
-        .button-orange:hover{
-            background-color: transparent;
-            border: #FFB22C solid 2px;
-            color: #FFB22C;
-        }
         .color-navbar{
             background-color: rgba(54, 54, 54, 0.9);
         }
@@ -62,34 +57,48 @@
         <div class="container-fluid" style="height: 100vh">
             <div class="row ">
                 <div class="container-fluid col-md-8 non-scroll-hide">
-                    @for ($i = 0; $i < 4; $i++)
+                    {{-- @for ($i = 0; $i < 4; $i++) --}}
                         <div class="row">
-                            @for ($j = 0; $j < 4; $j++)
+                            @foreach ($foods as $food)    
                                 <div class="col-sm-3">
                                     <div class="card my-2 shadow">
-                                        <img src="{{asset('asset/slide1.jpg')}}" class="card-img-top" alt="menu-{{$j}}">
+                                        <img src="{{asset('asset/slide1.jpg')}}" class="card-img-top" alt="menu-{{$food->food_id}}">
                                         <div class="card-body">
-                                            <h5 class="card-title">Menu {{$j+1}}</h5>
-                                            <button href="#" class="btn button-orange" data-bs-toggle="modal" data-bs-target="#menu{{$j}}">Detail</button>
+                                            <h5 class="card-title">{{$food->food_name}}</h5>
+                                            <p class="my-1">${{$food->food_price}}</p>
+                                            <div class="d-flex justify-content-end">
+                                                <button href="#" class="btn btn-warning p-auto mx-1" data-bs-toggle="modal" data-bs-target="#menu{{$food->food_id}}">
+                                                    <span><img src="{{asset('asset/info.svg')}}" alt=""></span>
+                                                </button>
+                                                <form action="{{route('checkout.addCart')}}" method="post">
+                                                    @csrf
+                                                    <button class="btn btn-success">
+                                                        <span><img src="{{asset('asset/cart-plus.svg')}}" alt=""></span>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <div class="modal fade" id="menu{{$j}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="menu{{$food->food_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
-                                              <div class="modal-content">
+                                            <div class="modal-content">
                                                 <div class="modal-header">
-                                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Menu {{$j+1}}</h1>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">{{$food->food_name}}</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                  ...
+                                                <h3 class="fw-bold">{{$food->food_name}}</h3>
+                                                <p>${{$food->food_price}}</p>
+                                                <p>{{$food->food_desc}}</p>
                                                 </div>
-                                              </div>
                                             </div>
-                                          </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            @endfor
+                            @endforeach
+                            {{-- @endfor --}}
                         </div>
-                    @endfor
+                    {{-- @endfor --}}
                 </div>
             </div>
         </div>
