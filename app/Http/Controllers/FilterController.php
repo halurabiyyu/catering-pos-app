@@ -13,8 +13,8 @@ class FilterController extends Controller
         $categories = CategoryModel::latest()->get();
         $category = CategoryModel::findOrFail($id);
         $foods = FoodModel::where('category_id', $id)->get();
-        
-        return view('/allMenu', compact('foods', 'category', 'categories'));
+        $currentCategoryId = $id;
+        return view('/allMenu', compact('foods', 'category', 'categories', 'currentCategoryId'));
     }
 
     

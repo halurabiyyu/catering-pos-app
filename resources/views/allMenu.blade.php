@@ -35,6 +35,9 @@
         .color-navbar{
             background-color: rgba(54, 54, 54, 0.9);
         }
+        .footer{
+            background-color: rgba(54, 54, 54, 0.9);
+        }
         #category {
             white-space: nowrap;
             overflow-x: auto;
@@ -77,10 +80,10 @@
                               Filter
                             </button>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="{{route('filter.lowPrice')}}">Harga termurah</a></li>
-                              <li><a class="dropdown-item" href="{{route('filter.highPrice')}}">Harga termahal</a></li>
-                              <li><a class="dropdown-item" href="{{route('filter.ascName')}}">A - Z</a></li>
-                              <li><a class="dropdown-item" href="{{route('filter.descName')}}">Z - A</a></li>
+                                <li><a class="dropdown-item" href="{{route('filter.lowPrice')}}">Harga termurah</a></li>
+                                <li><a class="dropdown-item" href="{{route('filter.highPrice')}}">Harga termahal</a></li>
+                                <li><a class="dropdown-item" href="{{route('filter.ascName')}}">A - Z</a></li>
+                                <li><a class="dropdown-item" href="{{route('filter.descName')}}">Z - A</a></li>
                             </ul>
                         </div>
                         <div>
@@ -92,15 +95,35 @@
                             </form>
                         </div>
                     </div>
+                    @if (isset($currentFilter) && $currentFilter == 'descPrice')
+                        <div class=" my-1 badge text-bg-secondary text-center text-wrap">
+                            <span class="">Harga Termahal</span>
+                        </div>
+                    @endif
+                    @if (isset($currentFilter) && $currentFilter == 'ascPrice')
+                        <div class=" my-1 badge text-bg-secondary text-center text-wrap">
+                            <span class="">Harga Termurah</span>
+                        </div>
+                    @endif
+                    @if (isset($currentFilter) && $currentFilter == 'a-z')
+                        <div class=" my-1 badge text-bg-secondary text-center text-wrap">
+                            <span class="">A - Z</span>
+                        </div>
+                    @endif
+                    @if (isset($currentFilter) && $currentFilter == 'z-a')
+                        <div class=" my-1 badge text-bg-secondary text-center text-wrap">
+                            <span class="">Z - A</span>
+                        </div>
+                    @endif
                     <div class="d-flex gap-1" id="category">
                         <div>
-                            <a href="{{ route('menu.index') }}" class="btn btn-outline-secondary rounded-pill">
+                            <a href="{{ route('menu.index') }}" class="btn btn-outline-secondary rounded-pill {{isset($currentCategory)&&$currentCategory == 'all' ? 'active' : ''}}">
                                 All
                             </a>
                         </div>
                         @foreach ($categories as $item)
                             <div>
-                                <a href="{{ route('filter.category', $item->category_id) }}" class="btn btn-outline-secondary rounded-pill">
+                                <a href="{{ route('filter.category', $item->category_id) }}" class="btn btn-outline-secondary rounded-pill {{ isset($currentCategoryId) && $currentCategoryId == $item->category_id ? 'active' : '' }}">
                                     {{ $item->category_name }}
                                 </a>
                             </div>
@@ -108,6 +131,11 @@
                     </div>
                     {{-- @for ($i = 0; $i < 4; $i++) --}}
                         <div class="row">
+                            @if (isset($countFoods))
+                            <div class="d-flex justify-content-center align-items-center">
+                                <small class="text-secondary">{{$countFoods}} Makanan ditemukan</small>
+                            </div>
+                            @endif
                             @if (isset($foods))
                                 @foreach ($foods as $food)    
                                     <div class="col-sm-3">
@@ -158,12 +186,12 @@
             </div>
         </div>
         <footer>
-            <div class="container-fluid color-navbar" style="height: 15vh">
+            <div class="container-fluid footer" id="contact">
                 <div class="row">
                     <div class="col text-center text-lg-end">
-                        <p class="text-center text-lg-end fw-bold text-body-secondary">Kontak</p>
+                        <p class="text-center text-lg-end fw-bold text-secondary">Kontak</p>
                         <div>
-                            <a class="text-decoration-none text-body-secondary" target="_blank"
+                            <a class="text-decoration-none text-secondary" target="_blank"
                                 href="https://wa.me/+6289693853025">
                                 <img src="{{asset('asset/wa.svg')}}" style="width: 20px; height:20px;" alt="whatsapp">
                                 Whatsapp
@@ -171,22 +199,22 @@
                         </div>
                     </div>
                     <div class="col text-center text-lg-center my-3 m-lg-0">
-                        <p class="text-center fw-bolder text-body-secondary">Lokasi</p>
+                        <p class="text-center fw-bolder text-secondary">Lokasi</p>
                         <a href="https://maps.app.goo.gl/7hxDPSenfALYWvBz5"
-                            class="text-decoration-none text-body-secondary" target="_blank">
+                            class="text-decoration-none text-secondary" target="_blank">
                             <img src="{{asset('asset/pin-address.svg')}}" style="width:20px; height:20px" alt="pin map">
                             Rajeg Mas Pratama, Kab. Tangerang, Banten.
                         </a>
                     </div>
                     <div class="col-sm text-center text-lg-start px-0 m-0 overflow-hidden">
-                        <p class="text-center text-lg-start fw-bold text-body-secondary">Ikuti Kami</p>
-                        <a class="text-decoration-none text-body-secondary" href="https://instagram.com/haluraby" target="_blank">
+                        <p class="text-center text-lg-start fw-bold text-secondary">Ikuti Kami</p>
+                        <a class="text-decoration-none text-secondary" href="https://instagram.com/haluraby" target="_blank">
                             <img src="{{asset('asset/instagram.svg')}}" style="width:20px; height:20px" alt="instagram">
                             Instagram
                         </a>
                     </div>
                 </div>
-                <p class="text-center text-body-secondary">&copy; <span id="year"></span> All Rights Reserved - @haluraby </p>
+                <p class="text-center text-secondary m-0">&copy; <span id="year"></span> All Rights Reserved - @haluraby </p>
             </div>
         </footer>
     </main>
