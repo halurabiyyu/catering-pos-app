@@ -35,4 +35,10 @@ class AllMenuController extends Controller
         $category = CategoryModel::latest()->get();
         return view('allMenu', ['foods' => $foods, 'categories'=>$category]);
     }
+    public function search(Request $request) {
+        $search = $request->input('search');
+        $foods = FoodModel::where('food_name', 'like', "%$search%")->get();
+        $categories = CategoryModel::latest()->get();
+        return view('allMenu', compact('foods', 'categories', 'search'));       
+    }
 }

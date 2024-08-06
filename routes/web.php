@@ -117,6 +117,7 @@ Route::group(['prefix' => 'menu'], function(){
     Route::get('/lowPrice', [AllMenuController::class, 'filterByLowPrice'])->name('filter.lowPrice');
     Route::get('/a-z', [AllMenuController::class, 'filterByAscName'])->name('filter.ascName');
     Route::get('/z-a', [AllMenuController::class, 'filterByDescName'])->name('filter.descName');
+    Route::get('/search', [AllMenuController::class, 'search'])->name('filter.search');
 });
 
 Route::get('/filter/{id}', [FilterController::class, 'filterByCategory'])->name('filter.category');
