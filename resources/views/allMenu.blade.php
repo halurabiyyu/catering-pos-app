@@ -35,6 +35,17 @@
         .color-navbar{
             background-color: rgba(54, 54, 54, 0.9);
         }
+        #category {
+            white-space: nowrap;
+            overflow-x: auto;
+            padding-bottom: 10px; /* Optional, to add some space below the buttons */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */ 
+        }
+
+        #category div {
+            display: inline-block; /* Ensure the items are displayed inline */
+        }
     </style>
 </head>
 <body>
@@ -57,6 +68,39 @@
         <div class="container-fluid" style="height: 100vh">
             <div class="row ">
                 <div class="container-fluid col-md-8 non-scroll-hide">
+                    <div class="my-2">
+                        <h2 class="fw-bold text-center">All Menu</h2>
+                    </div>
+                    <div class="my-2 d-flex justify-content-between" >
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Filter
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{{route('filter.lowPrice')}}">Harga termurah</a></li>
+                              <li><a class="dropdown-item" href="{{route('filter.highPrice')}}">Harga termahal</a></li>
+                              <li><a class="dropdown-item" href="{{route('filter.ascName')}}">A - Z</a></li>
+                              <li><a class="dropdown-item" href="{{route('filter.descName')}}">Z - A</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <input type="search" class="form-control" style="" name="" id="" placeholder="Cari Makanan">
+                        </div>
+                    </div>
+                    <div class="d-flex gap-1" id="category">
+                        <div>
+                            <a href="{{ route('menu.index') }}" class="btn btn-outline-secondary rounded-pill">
+                                All
+                            </a>
+                        </div>
+                        @foreach ($categories as $item)
+                            <div>
+                                <a href="{{ route('filter.category', $item->category_id) }}" class="btn btn-outline-secondary rounded-pill">
+                                    {{ $item->category_name }}
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
                     {{-- @for ($i = 0; $i < 4; $i++) --}}
                         <div class="row">
                             @foreach ($foods as $food)    

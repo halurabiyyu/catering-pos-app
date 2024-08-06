@@ -10,6 +10,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\KategoriController;
 
 /*
@@ -112,6 +113,12 @@ Route::group(['middleware' => ['auth']], function(){
 
 Route::group(['prefix' => 'menu'], function(){
     Route::get('/', [AllMenuController::class, 'index'])->name('menu.index');
+    Route::get('/highPrice', [AllMenuController::class, 'filterByHighPrice'])->name('filter.highPrice');
+    Route::get('/lowPrice', [AllMenuController::class, 'filterByLowPrice'])->name('filter.lowPrice');
+    Route::get('/a-z', [AllMenuController::class, 'filterByAscName'])->name('filter.ascName');
+    Route::get('/z-a', [AllMenuController::class, 'filterByDescName'])->name('filter.descName');
 });
+
+Route::get('/filter/{id}', [FilterController::class, 'filterByCategory'])->name('filter.category');
 
 
