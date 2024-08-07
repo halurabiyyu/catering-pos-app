@@ -172,17 +172,20 @@
                         <a class="nav-link color-text-navbar" href="#contact">Kontak</a>
                 </li>
             </ul>
+            @if (Auth::check())
+            <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
+                @csrf
+            </form>
+            <div class="p-1 m-1">
+                <a href="{{route('checkout.index')}}"><span><img src="{{asset('asset/cart.svg')}}" style="width:50px; height:50px;" alt=""></span></a>
+            </div>
+            @endif
             <a class="btn button-login shadow" 
                 href="{{ Auth::check() ? route('logout') : route('login') }}"
                 onclick="{{ Auth::check() ? "event.preventDefault(); document.getElementById('logout-form').submit();" : "" }}">
                 {{ Auth::check() ? 'Logout' : 'Login' }}
             </a>
 
-            @if (Auth::check())
-                <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
-                    @csrf
-                </form>
-            @endif
         </div>
     </div>
 </nav>

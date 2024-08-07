@@ -13,6 +13,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Semua Menu - Catering</title>
     <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
         .non-scroll-hide {
             height: 100vh;
             overflow:auto; /* Add the ability to scroll */
