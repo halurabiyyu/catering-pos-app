@@ -120,7 +120,6 @@
                 height: 100vh;
             }
         }
-
         .button-orange{
             background-color: #FFB22C;
             color: white;
@@ -185,7 +184,6 @@
                 onclick="{{ Auth::check() ? "event.preventDefault(); document.getElementById('logout-form').submit();" : "" }}">
                 {{ Auth::check() ? 'Logout' : 'Login' }}
             </a>
-
         </div>
     </div>
 </nav>
