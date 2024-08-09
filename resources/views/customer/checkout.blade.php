@@ -126,6 +126,9 @@
                                         <span>Title Food</span>
                                         <span class="fw-bold">$Price Food</span>
                                     </div>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="" class="btn btn-danger">Delete</a>
+                                    </div>  
                                 </div>
                             </div>
                         </div>                        
