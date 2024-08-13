@@ -4,23 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\CartModel;
 use App\Models\FoodModel;
+use App\Models\UserModel;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
     public $cart;
     public function index() {
-        return view('customer.checkout');
+        $user = Auth::user();
+        $carts = CartModel::with('food')->where('user_id', $user->user_id)->get();
+        return view('customer.checkout', ['carts'=>$carts]);
     }
 
-    public function addCart(Request $request){
-        $cartFood = new CartModel();
-        $cartFood->food_name = $request->food_name;
-        $cartFood->food_price = $request->food_price;
-        $cartFood->save();
-        $this->fetchCart();
-    }
+    
     public function mount() {
         $this->fetchCart();
     }

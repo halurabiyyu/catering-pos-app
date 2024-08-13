@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartModel;
 use App\Models\CategoryModel;
 use App\Models\FoodModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AllMenuController extends Controller
 {
@@ -45,5 +47,17 @@ class AllMenuController extends Controller
         $countFoods = count($foods);
         $categories = CategoryModel::latest()->get();
         return view('allMenu', compact('foods', 'categories', 'search', 'countFoods'));       
+    }
+
+    public function addCart(FoodModel $food){
+
+        $user = Auth::user();
+        // $food = FoodModel::where($id)->get();
+        $cartFood = new CartModel();
+        $cartFood->user_id = $user->user_id;
+        $cartFood->food_id = $food->food_id;
+        $cartFood->save();
+        // $this->fetchCart();
+        return $this->index();
     }
 }
