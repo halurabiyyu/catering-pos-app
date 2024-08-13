@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::group(['prefix' => 'checkout'], function() {
             Route::get('/', [CheckoutController::class, 'index'])->name('checkout.index');
-            Route::post('/', [CheckoutController::class, 'addCart'])->name('checkout.addCart');
+            Route::post('/{food}', [AllMenuController::class, 'addCart'])->name('checkout.addCart');
         })->middleware('cek_login');
     });
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

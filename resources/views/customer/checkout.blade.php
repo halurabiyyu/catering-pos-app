@@ -43,6 +43,7 @@
         }
         .summary-box{
             width: 60%;
+            margin-top: 3.5rem;
         }
         #category {
             white-space: nowrap;
@@ -60,7 +61,6 @@
                 position: fixed;
                 bottom: 0;
                 left: 0;
-                right: 0;
                 width: 100%;
                 margin: 0;
                 border-radius: 0;
@@ -112,35 +112,41 @@
                     <div class="mt-3">
                         <h3 class="fw-bold">Keranjang</h3>
                     </div>
-                    <div class="bg-white shadow-sm rounded mb-4 p-2 ">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <div class="row" id="food-item">
-                                <div class="col-lg-2">
-                                    <div class="d-flex justify-content-lg-center">
-                                        <img src="{{asset('asset/slide1.jpg')}}" class="img-fluid rounded" alt="" style="width: 80px; height:80px">
+                    @forelse ($carts as $cart)
+                        <div class="bg-white shadow-sm rounded mb-4 p-2">
+                            <div class="form-check">
+                                <input class="form-check-input product-checkbox" type="checkbox" name="carts[]" value="{{ $cart->cart_id }}" data-price="{{ $cart->food->food_price }}" id="flexCheckDefault">
+                                <div class="row" id="food-item">
+                                    <div class="col-lg-2">
+                                        <div class="d-flex justify-content-lg-center">
+                                            <img src="{{ asset('asset/slide1.jpg') }}" class="img-fluid rounded" alt="" style="width: 80px; height:80px">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-10">
-                                    <div class="d-flex justify-content-between">
-                                        <span>Title Food</span>
-                                        <span class="fw-bold">$Price Food</span>
+                                    <div class="col-lg-10">
+                                        <div class="d-flex justify-content-between">
+                                            <span>{{ $cart->food->food_name }}</span>
+                                            <span class="fw-bold">${{ $cart->food->food_price }}</span>
+                                        </div>
+                                        <div class="d-flex justify-content-end mt-5">
+                                            <a href="" class="text-decoration-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#909294" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                                </svg>
+                                            </a>
+                                        </div>  
                                     </div>
-                                    <div class="d-flex justify-content-end mt-5">
-                                        <a href="" class="text-decoration-none">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#909294" class="bi bi-trash" viewBox="0 0 16 16">
-                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                              </svg>
-                                        </a>
-                                    </div>  
                                 </div>
                             </div>
-                        </div>                        
-                    </div>
+                        </div>
+                    @empty
+                        <div class="container-fluid d-flex justify-content-center">
+                            <small class="text-secondary text-center">Belum ada apapun dalam keranjang</small>
+                        </div>
+                    @endforelse
                 </div>
                 <div class="col-md-4 bg-body-tertiary" style="height: 100vh;" id="total">
-                    <div class="rounded bg-white mb-5 mt-5 p-2 shadow-sm summary-box">
+                    <div class="rounded bg-white p-2 shadow-sm summary-box">
                         <div class="container-fluid">
                             <span class="fw-bold">Ringkasan Belanja</span>
                         </div>
@@ -150,7 +156,9 @@
                                     <span>Total : </span>
                                 </div>
                                 <div class="">
-                                    <span class="fw-bold">Rp. 100.000</span>
+                                    <strong>
+                                        $<span class="" id="totalPrice">0.00</span>
+                                    </strong>
                                 </div>
                             </div>
                             <form action="" method="POST" >
@@ -205,7 +213,19 @@
     <script>
         AOS.init();
       </script>
-
+    <script>
+        document.querySelectorAll('.product-checkbox').forEach(function(checkbox) {
+            checkbox.addEventListener('change', calculateTotal);
+        });
+    
+        function calculateTotal() {
+            let total = 0;
+            document.querySelectorAll('.product-checkbox:checked').forEach(function(checkbox) {
+                total += parseFloat(checkbox.dataset.price);
+            });
+            document.getElementById('totalPrice').innerText = total.toFixed(2);
+        }
+    </script>
 
 </body>
 </html>

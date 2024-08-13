@@ -142,23 +142,27 @@
                             @if (isset($foods))
                                 @foreach ($foods as $food)    
                                     <div class="col-sm-3">
+
+                                        {{-- card food --}}
                                         <div class="card my-2 shadow">
-                                            <img src="{{asset('asset/slide1.jpg')}}" class="card-img-top" alt="menu-{{$food->food_id}}">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{$food->food_name}}</h5>
-                                                <p class="my-1">${{$food->food_price}}</p>
-                                                <div class="d-flex justify-content-end">
-                                                    <button href="#" class="btn btn-warning p-auto mx-1" data-bs-toggle="modal" data-bs-target="#menu{{$food->food_id}}">
-                                                        <span><img src="{{asset('asset/info.svg')}}" alt=""></span>
-                                                    </button>
-                                                    <form action="{{route('checkout.addCart')}}" method="post">
-                                                        @csrf
-                                                        <button class="btn btn-success">
-                                                            <span><img src="{{asset('asset/cart-plus.svg')}}" alt=""></span>
+                                            <form action="{{route('checkout.addCart', $food->food_id)}}" method="post">
+                                                <img src="{{asset('asset/slide1.jpg')}}" class="card-img-top" alt="menu-{{$food->food_id}}">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{$food->food_name}}</h5>
+                                                    <p class="my-1">${{$food->food_price}}</p>
+                                                    <div class="d-flex justify-content-end">
+                                                        <button href="#" class="btn btn-warning p-auto mx-1" data-bs-toggle="modal" data-bs-target="#menu{{$food->food_id}}">
+                                                            <span><img src="{{asset('asset/info.svg')}}" alt=""></span>
                                                         </button>
-                                                    </form>
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-success">
+                                                                <span><img src="{{asset('asset/cart-plus.svg')}}" alt=""></span>
+                                                            </button>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
+                                                
+                                            {{-- modal detail food --}}
                                             <div class="modal fade" id="menu{{$food->food_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
