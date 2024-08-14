@@ -177,8 +177,8 @@
             </form>
             <div class="p-1 mx-3 position-relative">
                 <a href="{{route('checkout.index')}}">
-                    <img src="{{asset('asset/cart.svg')}}" style="width:50px; height:50px;" alt="">
-                    <span class="position-absolute top-10 start-100 translate-middle badge rounded-pill bg-danger">
+                    <img src="{{asset('asset/cart.svg')}}" style="width:25px; height:25px;" alt="">
+                    <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-danger">
                         {{$countCart}}
                     </span>
                 </a>

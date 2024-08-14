@@ -16,7 +16,17 @@ class CheckoutController extends Controller
     public function index() {
         $user = Auth::user();
         $carts = CartModel::with('food')->where('user_id', $user->user_id)->get();
-        return view('customer.checkout', ['carts'=>$carts]);
+        $countCart = count($carts);
+        return view('customer.checkout', ['carts'=>$carts, 'countCart' => $countCart]);
+    }
+
+    public function countCart() {
+        if (Auth::user()) {
+            $user = Auth::user();
+            $carts = CartModel::with('food')->where('user_id', $user->user_id)->get();
+            $countCart = count($carts);
+            return $countCart;
+        }
     }
 
     

@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <title>Semua Menu - Catering</title>
+    <title>Keranjang - Catering</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -93,17 +93,40 @@
     <main class="">
         <nav class="navbar sticky-top shadow-sm navbar-expand-lg color-navbar">
             <div class="container-fluid">
-                <a class="navbar-brand color-text-navbar" href="#home"><img src="{{asset('asset/catering-logo.svg')}}" style="width: 50px; height:50px;" alt="catering-logo"></a>
+                <a class="navbar-brand color-text-navbar" href="{{url('/')}}"><img src="{{asset('asset/catering-logo.svg')}}" style="width: 50px; height:50px;" alt="catering-logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class=""><img src="{{asset('asset/navbutton.svg')}}" alt="navbar burger" style="width:20px; height:20px;"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link text-white" aria-current="page" href="{{url('/')}}">Beranda</a>
+                            <a class="nav-link  text-white" aria-current="page" href="{{url('/')}}">Beranda</a>
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <a class="nav-link  text-white" href="{{route('menu.index')}}">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  text-white" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+                @if (Auth::check())
+                <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
+                    @csrf
+                </form>
+                <div class="p-1 mx-3 position-relative">
+                    <a href="{{route('checkout.index')}}">
+                        <img src="{{asset('asset/cart-white.svg')}}" style="width:25px; height:25px;" alt="">
+                        <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-danger">
+                            {{$countCart}}
+                        </span>
+                    </a>
                 </div>
+                @endif
+                <a class="btn btn-outline-secondary shadow text-white" 
+                    href="{{ Auth::check() ? route('logout') : route('login') }}"
+                    onclick="{{ Auth::check() ? "event.preventDefault(); document.getElementById('logout-form').submit();" : "" }}">
+                    {{ Auth::check() ? 'Logout' : 'Login' }}
+                </a>
             </div>
         </nav>
         <div class="container-fluid bg-body-tertiary" style="height: 100vh">
