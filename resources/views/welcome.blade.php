@@ -153,6 +153,8 @@
         </style>
 </head>
 <body class="overflow-x-hidden">
+
+    {{-- navbar --}}
     <nav class="navbar fixed-top overflow-x-hidden navbar-custom navbar-expand-lg transparent-navbar">
         <div class="container-fluid">
             <a class="navbar-brand color-text-navbar" href="#home"><img src="{{asset('asset/catering-logo.svg')}}" style="width: 50px; height:50px;" alt="catering-logo"></a>
@@ -169,39 +171,46 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link color-text-navbar" href="#contact">Kontak</a>
-                </li>
-            </ul>
-            @if (Auth::check())
-            <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
-                @csrf
-            </form>
-            <div class="p-1 mx-3 position-relative">
-                <a href="{{route('checkout.index')}}">
-                    <img src="{{asset('asset/cart.svg')}}" style="width:25px; height:25px;" alt="">
-                    <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-danger">
-                        {{$countCart}}
-                    </span>
+                    </li>
+                </ul>
+                @if (Auth::check())
+                    <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
+                        @csrf
+                    </form>
+                    <div class="p-1 mx-3 position-relative">
+                        <a href="{{route('checkout.index')}}">
+                            <img src="{{asset('asset/cart.svg')}}" style="width:25px; height:25px;" alt="">
+                            <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-danger">
+                                {{$countCart}}
+                            </span>
+                        </a>
+                    </div>
+                @endif
+                <a class="btn button-login shadow" 
+                    href="{{ Auth::check() ? route('logout') : route('login') }}"
+                    onclick="{{ Auth::check() ? "event.preventDefault(); document.getElementById('logout-form').submit();" : "" }}">
+                    {{ Auth::check() ? 'Logout' : 'Login' }}
                 </a>
             </div>
-            @endif
-            <a class="btn button-login shadow" 
-                href="{{ Auth::check() ? route('logout') : route('login') }}"
-                onclick="{{ Auth::check() ? "event.preventDefault(); document.getElementById('logout-form').submit();" : "" }}">
-                {{ Auth::check() ? 'Logout' : 'Login' }}
-            </a>
         </div>
-    </div>
-</nav>
-<main class="">
-<div class="container-fluid bg-image" id="home">
-    <div class="content container-fluid p-0 d-flex flex-column-reverse flex-lg-row align-items-center" style="height:85vh;">
-        <div class="px-5 mb-5 box">
-            <h1 class="fw-bold text-white">Mam Catering</h1>
-            <p class="text-white">Kami menyajikan solusi kuliner terlengkap untuk setiap acara Anda. Dengan lebih dari 30 pilihan menu lezat, kami menawarkan variasi rasa yang akan memanjakan lidah semua tamu. Dari hidangan tradisional hingga internasional, kami memiliki semuanya!</p>
-            <a href="" class="btn button-login">Pesan Sekarang</a>
+    </nav>  
+    {{-- end navbar  --}}
+
+    {{-- main  --}}
+    <main class="">
+        {{-- about/home  --}}
+        <div class="container-fluid bg-image" id="home">
+            <div class="content container-fluid p-0 d-flex flex-column-reverse flex-lg-row align-items-center" style="height:85vh;">
+                <div class="px-5 mb-5 box">
+                    <h1 class="fw-bold text-white">Mam Catering</h1>
+                    <p class="text-white">Kami menyajikan solusi kuliner terlengkap untuk setiap acara Anda. Dengan lebih dari 30 pilihan menu lezat, kami menawarkan variasi rasa yang akan memanjakan lidah semua tamu. Dari hidangan tradisional hingga internasional, kami memiliki semuanya!</p>
+                    <a href="" class="btn button-login">Pesan Sekarang</a>
+                </div>
+            </div>
         </div>
-    </div>
-        </div>
+        {{-- end about/home  --}}
+
+        {{-- rating  --}}
         <div class="container-fluid bg-body-tertiary py-5">
             <div class="bg-bw m-auto p-3 rounded-3 bg-white shadow text-black px-5 d-flex align-items-center justify-content-center container"  id="rating" style="height: 15vh;">
                 <div class="row bg-bw-content">
@@ -231,6 +240,9 @@
                 </div>
             </div>
         </div>
+        {{-- end rating  --}}
+
+        {{-- menu  --}}
         <div class="container-fluid bg-body-tertiary pb-5">
             <div id="menu" class="container d-flex flex-column flex-column-reverse flex-lg-row-reverse align-items-center box-menu rounded shadow-sm bg-white">
                 <div class="px-5 m-auto text-wrap" data-aos="fade-left" data-aos-duration="1000">
@@ -262,6 +274,9 @@
                 </div>
             </div>
         </div>
+        {{-- end menu  --}}
+
+        {{-- footer  --}}
         <footer>
             <div class="container-fluid footer" id="contact">
                 <div class="row">
@@ -294,16 +309,22 @@
                 <p class="text-center text-secondary m-0">&copy; <span id="year"></span> All Rights Reserved - @haluraby </p>
             </div>
         </footer>
+        {{-- end footer  --}}
     </main>
+    {{-- end main  --}}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    {{-- animation on scroll  --}}
     <script>
         AOS.init();
-      </script>
+    </script>
+
+    {{-- transparent navbar animation  --}}
     <script>
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
@@ -316,6 +337,8 @@
             }
         });
     </script>
+
+    {{-- count number animation  --}}
     <script>
         window.addEventListener('load', function() {
         const countNumbers = document.querySelectorAll('.count-number');
@@ -331,7 +354,7 @@
             } else {
                 clearInterval(counter);
             }
-            }, 30); // Sesuaikan kecepatan animasi dengan mengubah nilai ini (dalam milidetik)
+            }, 30);
         });
         });
     </script>

@@ -29,7 +29,6 @@ class CheckoutController extends Controller
         }
     }
 
-    
     public function mount() {
         $this->fetchCart();
     }
