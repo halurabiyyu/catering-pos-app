@@ -41,10 +41,11 @@ class CheckoutController extends Controller
         $countCart = count($cart);
     }
 
-    public function deleteCart(CartModel $cart) {
+    public function deleteCart($id) {
         try {
+            $cart = CartModel::findOrFail($id);
             $cart->deleteOrFail();
-            $this->fetchCart();
+            return $this->index();
         } catch (Exception $e) {
             echo $e;            
         }
