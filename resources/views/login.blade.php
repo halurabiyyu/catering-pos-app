@@ -43,9 +43,13 @@
 <body>
     <main>
         <div class="container-fluid bg-login " style="height: 100vh">
+            {{-- back button  --}}
             <a class="btn button-login rounded-pill my-1 shadow-sm" href="{{route('welcome.index')}}"><</a>
+
+            {{-- login box  --}}
             <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 75vh">
                 <div class="bg-black shadow p-2 rounded bg-opacity-50">
+                    {{-- alert message  --}}
                     @if (session('error'))
                         <div class="alert alert-warning">
                             <p>{{session('error')}}</p>

@@ -41,20 +41,28 @@
 <body>
     <main>
         <div class="container-fluid bg-register " style="height: 100vh">
+
+            {{-- back button  --}}
             <a class="btn btn-register rounded-pill my-1 shadow-sm" href="{{route('welcome.index')}}"><</a>
+
+            {{-- register box  --}}
             <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 75vh">
                 <div class="bg-black shadow p-2 rounded bg-opacity-50">
                     <h1 class="text-register fw-bold text-center">Register</h1>
+
+                    {{-- alert message  --}}
                     @if (session('success'))
                         <div class="alert alert-success">{{session('success')}}</div>
                     @elseif (session('error'))
                         <div class="alert alert-danger">{{session('error')}}</div>
                     @endif
+
+                    {{-- register form  --}}
                     <form action="{{route('proses_register')}}" method="POST" class="px-5 py-2">
                         @csrf
+                        {{-- direct link login  --}}
                         <small class="text-register">Sudah mempunyai akun? <a href="{{route('login')}}" class="text-register">login disini</a></small>
                         <div class="input-group mb-1">
-                        
                             <div class="form-floating">
                               <input type="text" class="form-control @error('nama') is-invalid @enderror" id="name" placeholder="Nama" name="nama">
                               <label for="name" class="text-register" required>Nama</label>
@@ -109,6 +117,8 @@
                     </form>
                 </div>
             </div>
+            {{-- end register box  --}}
+
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
