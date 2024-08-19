@@ -41,6 +41,13 @@
       </a>
     </li>
     <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="{{route('transaction.index')}}" aria-expanded="false" aria-controls="ui-basic">
+        <i class="icon-layout menu-icon"></i>
+        <span class="menu-title">Daftar Transaksi</span>
+        {{-- <i class="menu-arrow"></i> --}}
+      </a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="{{route('logout')}}" aria-expanded="false" aria-controls="ui-basic">
         <i class="icon-layout menu-icon"></i>
         <span class="menu-title">Logout</span>

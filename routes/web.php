@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +105,15 @@ Route::group(['middleware' => ['auth']], function(){
             Route::get('/{id}/edit', [FoodController::class, 'edit'])->name('food.edit');
             Route::put('/{id}', [FoodController::class, 'update'])->name('food.update');
             Route::delete('/{id}', [FoodController::class, 'destroy'])->name('food.destroy');
+        });
+        Route::group(['prefix'=> 'transaction'], function (){
+            Route::get('/', [TransactionController::class, 'index'])->name('transaction.index');
+            Route::post('/list', [TransactionController::class, 'list'])->name('transaction.list');
+            Route::get('/create', [TransactionController::class, 'create'])->name('transaction.create');
+            Route::post('/', [TransactionController::class, 'store'])->name('transaction.store');
+            Route::get('/{id}/edit', [TransactionController::class, 'edit'])->name('transaction.edit');
+            Route::put('/{id}', [TransactionController::class, 'update'])->name('transaction.update');
+            Route::delete('/{id}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
         });
         // Route for logout 
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
