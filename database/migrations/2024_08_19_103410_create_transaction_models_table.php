@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id('transaction_id');
             $table->unsignedBigInteger('user_id');
             $table->decimal('total_harga', 10, 2);
+            $table->enum('status', ['success', 'process', 'canceled', 'waiting'])
+                    ->default('waiting');   
             $table->timestamps();
             
             $table->foreign('user_id')->references('user_id')->on('users');
