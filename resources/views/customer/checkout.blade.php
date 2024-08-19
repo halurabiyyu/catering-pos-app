@@ -4,6 +4,7 @@
     {{-- <link rel="stylesheet" href="style.css"> --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('asset/welcome.css')}}">
     <link rel="icon" href="{{asset('asset/logo-cook.svg')}}">
@@ -130,14 +131,26 @@
             </div>
         </nav>
         <div class="container-fluid bg-body-tertiary" style="height: 100vh">
+            <form action="{{route('checkout.process')}}" method="POST" >
+            @csrf
             <div class="d-flex m-auto justify-content-center align-items-center">
                 <div class="container-fluid mx-0 col-md-6 non-scroll-hide " >
+                    @if (session('success'))
+                        <div class="my-1 alert alert-success">
+                            {{session('success')}}
+                        </div>
+                    @endif
+                    @if (session('message'))
+                        <div class="my-1 alert alert-warning">
+                            {{session('message')}}
+                        </div>
+                    @endif
                     <div class="mt-3">
                         <h3 class="fw-bold">Keranjang</h3>
                     </div>
                     @forelse ($carts as $cart)
-                        <div class="bg-white shadow-sm rounded mb-4 p-2">
-                            <div class="form-check">
+                    <div class="bg-white shadow-sm rounded mb-4 p-2">
+                        <div class="form-check">
                                 <input class="form-check-input product-checkbox" type="checkbox" name="carts[]" value="{{ $cart->cart_id }}" data-price="{{ $cart->food->food_price }}" id="flexCheckDefault">
                                 <div class="row" id="food-item">
                                     <div class="col-lg-2">
@@ -151,17 +164,20 @@
                                             <span class="fw-bold">${{ $cart->food->food_price }}</span>
                                         </div>
                                         <div class="d-flex justify-content-end mt-5">
-                                            <form action="{{route('checkout.deleteCart', $cart->cart_id)}}" method="POST">
-                                                @csrf  
-                                                @method('DELETE')
-                                                <button type="submit" class="btn" onclick="return confirm('Are you sure you want to delete this item?');">
+                                            <div class="d-flex align-items-center">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary decrease-quantity" data-id="{{ $cart->cart_id }}">-</button>
+                                                <input type="number" class="form-control text-center mx-2 quantity-input" name="quantities[{{ $cart->cart_id }}]" value="1" min="1" style="width: 50px;">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary increase-quantity" data-id="{{ $cart->cart_id }}">+</button>
+                                            </div>
+                                        
+                                                <button type="button" class="btn delete-button" data-id="{{ $cart->cart_id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#909294" class="bi bi-trash" viewBox="0 0 16 16">
                                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                                         <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
                                                     </svg>
                                                 </button>
-                                            </form>
-                                            </div>  
+                                            
+                                        </div>  
                                     </div>
                                 </div>
                             </div>
@@ -188,15 +204,14 @@
                                     </strong>
                                 </div>
                             </div>
-                            <form action="" method="POST" >
                                 <div class="d-flex justify-content-center align-items-center">
                                     <button class="btn btn-success fw-bold" style="width: 100%" type="submit">Beli</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         <footer>
             <div class="container-fluid footer" id="contact">
@@ -253,7 +268,71 @@
             document.getElementById('totalPrice').innerText = total.toFixed(2);
         }
     </script>
+    <script>
+        document.querySelectorAll('.increase-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                let input = this.previousElementSibling;
+                input.value = parseInt(input.value) + 1;
+                updateTotalPrice();
+            });
+        });
+    
+        document.querySelectorAll('.decrease-quantity').forEach(button => {
+            button.addEventListener('click', function() {
+                let input = this.nextElementSibling;
+                if (input.value > 1) {
+                    input.value = parseInt(input.value) - 1;
+                    updateTotalPrice();
+                }
+            });
+        });
+    
+        function updateTotalPrice() {
+            let totalPrice = 0;
+            document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
+                let price = parseFloat(checkbox.getAttribute('data-price'));
+                let quantity = parseInt(checkbox.closest('.form-check').querySelector('.quantity-input').value);
+                totalPrice += price * quantity;
+            });
+            document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+        }
+    
+        document.querySelectorAll('.product-checkbox, .quantity-input').forEach(item => {
+            item.addEventListener('change', updateTotalPrice);
+        });
+    
+        updateTotalPrice(); // Inisialisasi total harga
+    </script>
+    <script>
+        document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const cartId = this.getAttribute('data-id');
+        if (confirm('Are you sure you want to delete this item?')) {
+            fetch(`{{ url('/customer/checkout/') }}/${cartId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Debugging line
+                if (data.success) {
+                    window.location.href = window.location.href; // Refresh the page
+                } else {
+                    alert('Error deleting item.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error); // Log any errors
+            });
+        }
+    });
+});
 
+    </script>
+    
 </body>
 </html>
 
