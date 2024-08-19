@@ -25,4 +25,8 @@ class FoodModel extends Model
         return $this->hasMany(CartModel::class);
     }
 
+    public function detail() : HasMany {
+        return $this->hasMany(DetailTransactionModel::class);
+    }
+
 }
