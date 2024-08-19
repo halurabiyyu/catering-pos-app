@@ -31,8 +31,11 @@ class UserModel extends Authenticatable implements JWTSubject
         return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
     }
 
-    public function cart(): HasMany
-    {
+    public function cart(): HasMany{
         return $this->hasMany(CartModel::class);
+    }
+
+    public function transaction() : HasMany {
+        return $this->hasMany(TransactionModel::class);
     }
 }
