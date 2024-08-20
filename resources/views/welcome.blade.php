@@ -12,114 +12,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Mam Catering</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        .bg-image{
-            background-image: url("{{ asset('asset/slide1.jpg') }}");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            width: 100%;
-        }
-
-        .bg-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 70%; /* Adjust the width as needed */
-            height: 100vh;
-            background: linear-gradient(to right, rgb(0, 0, 0), rgba(0, 0, 0, 0));
-            filter: blur(10px); /* Adjust the blur radius as needed */
-            z-index: 1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .bg-bw {
-            position: relative; /* Make sure the container has position relative */
-        }
-
-        .bg-bw::before {
-            content: "";
-            background-image: url("{{ asset('asset/bw-bg.jpg') }}");
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 10px;
-            opacity: 0.5; /* Adjust the opacity as needed */
-            z-index: 1; /* Ensure it is behind the content */
-        }
-
-        .bg-bw-content {
-            position: relative; /* Ensure the content is positioned correctly */
-            z-index: 2; /* Ensure the content is above the background */
-        }
-
-        .rating-z{
-            z-index: 2;
-        }
-
-        /* styles.css */
-        .navbar-custom {
-            transition: background-color 0.3s ease;
-        }
-
-        .transparent-navbar {
-            /* background-position: center; */
-            background-color: transparent !important;
-        }
-
-        .scrolled-navbar {
-            background-color: rgba(54, 54, 54, 0.9) !important; /* Adjust color and opacity as needed */
-        }
-
-        .color-text-navbar {
-            color: #ffffff; /* Adjust text color as needed */
-        }
-        .color-text-navbar:hover{
-            color:#ffffff;
-            font-weight: bolder;
-        }
-        .box{
-            width: 50%;
-            max-width: 100%;
-        }
-
-        .box-menu{
-            height: 85vh;
-            max-height: 100vh;
-        }
-
-        .footer{
-            background-color: rgba(54, 54, 54, 0.9);
-        }
-
-        @media (max-width: 768px) {
-            .navbar .nav-link {
-                text-align: center;
-            }
-            .bg-image::before {
-                width: 100%; /* Adjust the width for smaller screens */
-                filter: blur(5px); /* Adjust the blur for smaller screens */
-            }
-            .box{
-                width: 100%;
-            }
-            .box-menu{
-                height: 100vh;
-            }
-        }
         .button-orange{
             background-color: #FFB22C;
             color: white;
@@ -138,19 +30,7 @@
             background-color: #FFB22C;
             color: white;
         }
-        .count-number {
-            animation: count-animation 0.5s ease-out forwards;
-        }
-
-        @keyframes count-animation {
-            from {
-                transform: translateY(-50%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-        </style>
+    </style>
 </head>
 <body class="overflow-x-hidden">
 
@@ -164,20 +44,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link color-text-navbar" aria-current="page" href="#home">Beranda</a>
+                        <a class="nav-link text-white" aria-current="page" href="#home">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link color-text-navbar" href="#menu">Menu</a>
+                        <a class="nav-link text-white" href="#menu">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link color-text-navbar" href="#contact">Kontak</a>
+                        <a class="nav-link text-white" href="#contact">Kontak</a>
                     </li>
                 </ul>
                 @if (Auth::check())
                     <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
                         @csrf
                     </form>
-                    <div class="p-1 me-2 position-relative">
+                    <div class="p-1 me-2 position-relative nav-link">
                         <a href="{{route('checkout.index')}}">
                             <img src="{{asset('asset/cart.svg')}}" style="width:25px; height:25px;" alt="cart logo">
                             <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-danger">
@@ -185,17 +65,19 @@
                             </span>
                         </a>
                     </div>
-                    <div class="me-2">
+                    <div class="me-2 nav-link">
                         <a href="{{route('userShowTransaction')}}">
                             <img src="{{asset('asset/transaction.svg')}}" alt="transaction logo">
                         </a>
                     </div>
                 @endif
-                <a class="btn button-login shadow" 
-                    href="{{ Auth::check() ? route('logout') : route('login') }}"
-                    onclick="{{ Auth::check() ? "event.preventDefault(); document.getElementById('logout-form').submit();" : "" }}">
-                    {{ Auth::check() ? 'Logout' : 'Login' }}
-                </a>
+                <div class="nav-link">
+                    <a class="button-login btn shadow" 
+                        href="{{ Auth::check() ? route('logout') : route('login') }}"
+                        onclick="{{ Auth::check() ? "event.preventDefault(); document.getElementById('logout-form').submit();" : "" }}">
+                        {{ Auth::check() ? 'Logout' : 'Login' }}
+                    </a>
+                </div>
             </div>
         </div>
     </nav>  
@@ -323,45 +205,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{asset('asset/welcome.js')}}"></script>
     
     {{-- animation on scroll  --}}
     <script>
         AOS.init();
-    </script>
-
-    {{-- transparent navbar animation  --}}
-    <script>
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled-navbar');
-                navbar.classList.remove('transparent-navbar');
-            } else {
-                navbar.classList.add('transparent-navbar');
-                navbar.classList.remove('scrolled-navbar');
-            }
-        });
-    </script>
-
-    {{-- count number animation  --}}
-    <script>
-        window.addEventListener('load', function() {
-        const countNumbers = document.querySelectorAll('.count-number');
-
-        countNumbers.forEach(countNumber => {
-            const target = parseInt(countNumber.getAttribute('data-target'));
-
-            let currentNumber = 0;
-            const counter = setInterval(() => {
-            if (currentNumber < target) {
-                currentNumber++;
-                countNumber.textContent = currentNumber;
-            } else {
-                clearInterval(counter);
-            }
-            }, 30);
-        });
-        });
     </script>
 </body>
 </html>
