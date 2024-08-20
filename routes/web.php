@@ -111,6 +111,16 @@ Route::group(['middleware' => ['auth']], function(){
             Route::post('/list', [TransactionController::class, 'list'])->name('transaction.list');
             Route::get('/create', [TransactionController::class, 'create'])->name('transaction.create');
             Route::post('/', [TransactionController::class, 'store'])->name('transaction.store');
+            Route::get('/{id}', [TransactionController::class, 'show'])->name('transaction.show');
+            Route::get('/{id}/edit', [TransactionController::class, 'edit'])->name('transaction.edit');
+            Route::put('/{id}', [TransactionController::class, 'update'])->name('transaction.update');
+            Route::delete('/{id}', [TransactionController::class, 'destroy'])->name('transaction.destroy');
+        });
+        Route::group(['prefix'=> 'detail_transaction'], function (){
+            Route::get('/', [TransactionController::class, 'index'])->name('transaction.index');
+            Route::post('/list', [TransactionController::class, 'list'])->name('transaction.list');
+            Route::get('/create', [TransactionController::class, 'create'])->name('transaction.create');
+            Route::post('/', [TransactionController::class, 'store'])->name('transaction.store');
             Route::get('/{id}/edit', [TransactionController::class, 'edit'])->name('transaction.edit');
             Route::put('/{id}', [TransactionController::class, 'update'])->name('transaction.update');
             Route::delete('/{id}', [TransactionController::class, 'destroy'])->name('transaction.destroy');

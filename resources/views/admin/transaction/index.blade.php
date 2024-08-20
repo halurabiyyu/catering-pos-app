@@ -20,14 +20,14 @@
     @endif
     {{-- <a href="{{route('user.create')}}" class="btn btn-success my-1">Tambah</a> --}}
     <div class="table-responsive">
-      <table id="userTable" class="table table-striped">
+      <table id="transactionTable" class="table table-striped">
         <thead>
           <tr>
             <th>Nomor</th>
             <th>Tanggal</th>
             <th>ID Transaksi</th>
             <th>Nama Pembeli</th>
-            <th>Total Harga</th>
+            <th>Total Harga ($)</th>
             <th>Status</th>
             <th>Aksi</th>
           </tr>
@@ -45,10 +45,10 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            $('#userTable').DataTable({
+            $('#transactionTable').DataTable({
                 serverSide: true,
                 ajax: {
-                    url: "{{ url('admin/user/list') }}",
+                    url: "{{ url('admin/transaction/list') }}",
                     dataType: "json",
                     type: "POST",
                 },
@@ -62,13 +62,31 @@
                     className: "text-center",
                     orderable: true,
                     searchable: true,
+                    render: function(data, type, row) {
+                      const date = new Date(data);
+                      // Format tanggal (DD-MM-YYYY)
+                      const formattedDate = date.toLocaleDateString('en-GB');
+                      // Format waktu (HH:mm)
+                      const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                      return `${formattedDate} ${formattedTime}`;
+                    }
                 }, {
                     data: "transaction_id",
                     className: "text-center",
                     orderable: true,
                     searchable: true,
                 }, {
-                    data: "nama",
+                    data: "user.nama",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true,
+                }, {
+                    data: "total_harga",
+                    className: "text-center",
+                    orderable: true,
+                    searchable: true,
+                }, {
+                    data: "status",
                     className: "text-center",
                     orderable: true,
                     searchable: true,

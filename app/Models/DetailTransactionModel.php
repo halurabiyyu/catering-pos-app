@@ -22,6 +22,6 @@ class DetailTransactionModel extends Model
     }
 
     public function food() : BelongsTo {
-        return $this->belongsTo(FoodModel::class);
+        return $this->belongsTo(FoodModel::class, 'food_id', 'food_id');
     }
 }

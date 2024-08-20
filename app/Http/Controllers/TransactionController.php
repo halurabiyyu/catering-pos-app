@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailTransactionModel;
 use App\Models\TransactionModel;
 use Exception;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class TransactionController extends Controller
     }
 
     public function list(Request $request){
-        $transactions = TransactionModel::select('created_at', 'transaction_id', 'user_id', 'total_harga', 'status')
+        $transactions = TransactionModel::latest()->select('created_at', 'transaction_id', 'user_id', 'total_harga', 'status')
                     ->with('user');
 
 
@@ -87,26 +88,23 @@ class TransactionController extends Controller
 
     public function show(String $id){
         try {
-            //code...
-            // if ($id > TransactionModel::count()) {
-            //     $this->index();
-            // }
-            $user = TransactionModel::with('level')->findOrFail($id);
-            if (!$user) {
+            $transaction = DetailTransactionModel::where('transaction_id', $id)->with('food')->get();
+            // dd($transaction);
+            if (!$transaction) {
                 $this->index();   
             }
             $breadcrumb = (object)[
-                'title' => 'Detail User',
-                'list' => ['Home', 'User', 'Detail'],
+                'title' => 'Detail Transaction',
+                'list' => ['Home', 'Transaction', 'Detail'],
             ];
     
             $page = (object)[
-                'title' => 'Detail User'
+                'title' => 'Detail Transaksi'
             ];
     
-            $activeMenu = 'user';
+            $activeMenu = 'transaksi';
     
-            return view('admin.user.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'user' => $user, 'activeMenu' => $activeMenu]);
+            return view('admin.transaction.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'transaction' => $transaction, 'activeMenu' => $activeMenu]);
         } catch (Exception $e) {
             return view('errors::404');
         }

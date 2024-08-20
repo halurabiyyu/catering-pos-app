@@ -22,6 +22,6 @@ class TransactionModel extends Model
     }
 
     public function user() : BelongsTo {
-        return $this->belongsTo(UserModel::class);
+        return $this->belongsTo(UserModel::class, 'user_id', 'user_id');
     }
 }
