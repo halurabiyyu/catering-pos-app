@@ -1,94 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {{-- <link rel="stylesheet" href="style.css"> --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('asset/welcome.css')}}">
+    <link rel="stylesheet" href="{{asset('asset/checkout.css')}}">
     <link rel="icon" href="{{asset('asset/logo-cook.svg')}}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Keranjang - Catering</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }   
-        .non-scroll-hide {
-            height: 100vh;
-            overflow:auto; /* Add the ability to scroll */
-        }
-
-        .non-scroll-hide::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .non-scroll-hide {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-        }
-
-        .button-orange{
-            background-color: #FFB22C;
-            color: white;
-        }
-        .color-navbar{
-            background-color: rgba(54, 54, 54, 0.9);
-        }
-        .footer{
-            background-color: rgba(54, 54, 54, 0.9);
-        }
-        .summary-box{
-            width: 60%;
-            margin-top: 3.5rem;
-        }
-        #category {
-            white-space: nowrap;
-            overflow-x: auto;
-            padding-bottom: 10px; /* Optional, to add some space below the buttons */
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */ 
-        }
-
-        #category div {
-            display: inline-block; /* Ensure the items are displayed inline */
-        }
-        @media (max-width: 768px) {
-            .summary-box {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                margin: 0;
-                border-radius: 0;
-                z-index: 1000;
-            }
-            #food-item {
-                display: flex;
-                flex-direction: row;
-            }
-
-            #food-item .col-lg-2 {
-                flex: 0 0 auto;
-                width: auto;
-            }
-
-            #food-item .col-lg-10 {
-                flex: 1 0 auto;
-                width: auto;
-            }
-
-            #food-item .d-flex {
-                flex-direction: row;
-                justify-content: space-between;
-                width: 100%;
-            }   
-        }
-    </style>
 </head>
 <body>
     <main class="">
@@ -174,14 +98,12 @@
                                                 <input type="number" class="form-control text-center mx-2 quantity-input" name="quantities[{{ $cart->cart_id }}]" value="1" min="1" style="width: 50px;">
                                                 <button type="button" class="btn btn-sm btn-outline-secondary increase-quantity" data-id="{{ $cart->cart_id }}">+</button>
                                             </div>
-                                        
-                                                <button type="button" class="btn delete-button" data-id="{{ $cart->cart_id }}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#909294" class="bi bi-trash" viewBox="0 0 16 16">
-                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                                    </svg>
-                                                </button>
-                                            
+                                            <button type="button" class="btn delete-button" data-id="{{ $cart->cart_id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#909294" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                                </svg>
+                                            </button>
                                         </div>  
                                     </div>
                                 </div>
@@ -251,7 +173,6 @@
             </div>
         </footer>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -260,86 +181,34 @@
     <script>
         AOS.init();
       </script>
-    <script>
-        document.querySelectorAll('.product-checkbox').forEach(function(checkbox) {
-            checkbox.addEventListener('change', calculateTotal);
-        });
-    
-        function calculateTotal() {
-            let total = 0;
-            document.querySelectorAll('.product-checkbox:checked').forEach(function(checkbox) {
-                total += parseFloat(checkbox.dataset.price);
-            });
-            document.getElementById('totalPrice').innerText = total.toFixed(2);
-        }
-    </script>
-    <script>
-        document.querySelectorAll('.increase-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                let input = this.previousElementSibling;
-                input.value = parseInt(input.value) + 1;
-                updateTotalPrice();
-            });
-        });
-    
-        document.querySelectorAll('.decrease-quantity').forEach(button => {
-            button.addEventListener('click', function() {
-                let input = this.nextElementSibling;
-                if (input.value > 1) {
-                    input.value = parseInt(input.value) - 1;
-                    updateTotalPrice();
-                }
-            });
-        });
-    
-        function updateTotalPrice() {
-            let totalPrice = 0;
-            document.querySelectorAll('.product-checkbox:checked').forEach(checkbox => {
-                let price = parseFloat(checkbox.getAttribute('data-price'));
-                let quantity = parseInt(checkbox.closest('.form-check').querySelector('.quantity-input').value);
-                totalPrice += price * quantity;
-            });
-            document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
-        }
-    
-        document.querySelectorAll('.product-checkbox, .quantity-input').forEach(item => {
-            item.addEventListener('change', updateTotalPrice);
-        });
-    
-        updateTotalPrice(); // Inisialisasi total harga
-    </script>
+    <script src="{{asset('asset/checkout.js')}}"></script>
     <script>
         document.querySelectorAll('.delete-button').forEach(button => {
-    button.addEventListener('click', function() {
-        const cartId = this.getAttribute('data-id');
-        if (confirm('Are you sure you want to delete this item?')) {
-            fetch(`{{ url('/customer/checkout/') }}/${cartId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            button.addEventListener('click', function() {
+                const cartId = this.getAttribute('data-id');
+                if (confirm('Are you sure you want to delete this item?')) {
+                    fetch(`{{ url('/customer/checkout/') }}/${cartId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.success) {
+                            window.location.href = window.location.href;
+                        } else {
+                            alert('Error deleting item.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
                 }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Debugging line
-                if (data.success) {
-                    window.location.href = window.location.href; // Refresh the page
-                } else {
-                    alert('Error deleting item.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error); // Log any errors
             });
-        }
-    });
-});
-
+        });
     </script>
-    
 </body>
 </html>
-
-
-

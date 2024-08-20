@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {{-- <link rel="stylesheet" href="style.css"> --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -166,61 +165,61 @@
                         @endforeach
                     </div>
                     {{-- @for ($i = 0; $i < 4; $i++) --}}
-                        <div class="row">
-                            @if (isset($countFoods))
-                            <div class="d-flex justify-content-center align-items-center">
-                                <small class="text-secondary">{{$countFoods}} Makanan ditemukan</small>
-                            </div>
-                            @endif
-                            @if (isset($foods))
-                                @foreach ($foods as $food)    
-                                    <div class="col-sm-3">
+                    <div class="row">
+                        @if (isset($countFoods))
+                        <div class="d-flex justify-content-center align-items-center">
+                            <small class="text-secondary">{{$countFoods}} Makanan ditemukan</small>
+                        </div>
+                        @endif
+                        @if (isset($foods))
+                            @foreach ($foods as $food)    
+                                <div class="col-sm-3">
 
-                                        {{-- card food --}}
-                                        <div class="card my-2 shadow">
-                                            <img src="{{asset('asset/slide1.jpg')}}" class="card-img-top" alt="menu-{{$food->food_id}}">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{$food->food_name}}</h5>
-                                                <p class="my-1">${{$food->food_price}}</p>
-                                                <div class="d-flex justify-content-end">
-                                                    <button href="#" class="btn btn-warning p-auto mx-1" data-bs-toggle="modal" data-bs-target="#menu{{$food->food_id}}">
-                                                        <span><img src="{{asset('asset/info.svg')}}" alt=""></span>
-                                                    </button>
-                                                    <form action="{{route('checkout.addCart', $food->food_id)}}" method="post">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-success">
-                                                                <span><img src="{{asset('asset/cart-plus.svg')}}" alt=""></span>
-                                                            </button>
-                                                    </form>
-                                                    </div>
+                                    {{-- card food --}}
+                                    <div class="card my-2 shadow">
+                                        <img src="{{asset('asset/slide1.jpg')}}" class="card-img-top" alt="menu-{{$food->food_id}}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{$food->food_name}}</h5>
+                                            <p class="my-1">${{$food->food_price}}</p>
+                                            <div class="d-flex justify-content-end">
+                                                <button href="#" class="btn btn-warning p-auto mx-1" data-bs-toggle="modal" data-bs-target="#menu{{$food->food_id}}">
+                                                    <span><img src="{{asset('asset/info.svg')}}" alt=""></span>
+                                                </button>
+                                                <form action="{{route('checkout.addCart', $food->food_id)}}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-success">
+                                                            <span><img src="{{asset('asset/cart-plus.svg')}}" alt=""></span>
+                                                        </button>
+                                                </form>
                                                 </div>
-                                                
-                                            {{-- modal detail food --}}
-                                            <div class="modal fade" id="menu{{$food->food_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{$food->food_name}}</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                    <h3 class="fw-bold">{{$food->food_name}}</h3>
-                                                    <p>${{$food->food_price}}</p>
-                                                    <p>{{$food->food_desc}}</p>
-                                                    </div>
+                                            </div>
+                                            
+                                        {{-- modal detail food --}}
+                                        <div class="modal fade" id="menu{{$food->food_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">{{$food->food_name}}</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
+                                                <div class="modal-body">
+                                                <h3 class="fw-bold">{{$food->food_name}}</h3>
+                                                <p>${{$food->food_price}}</p>
+                                                <p>{{$food->food_desc}}</p>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            @else
-                                <div>
-                                    <h3>Not Found</h3>
                                 </div>
-                            @endif
-                            {{-- @endfor --}}
-                        </div>
+                            @endforeach
+                        @else
+                            <div>
+                                <h3>Not Found</h3>
+                            </div>
+                        @endif
+                        {{-- @endfor --}}
+                    </div>
                     {{-- @endfor --}}
                 </div>
             </div>

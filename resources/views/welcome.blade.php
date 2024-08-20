@@ -33,7 +33,6 @@
     </style>
 </head>
 <body class="overflow-x-hidden">
-
     {{-- navbar --}}
     <nav class="navbar fixed-top overflow-x-hidden navbar-custom navbar-expand-lg transparent-navbar">
         <div class="container-fluid">

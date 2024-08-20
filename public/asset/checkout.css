@@ -1,0 +1,74 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}   
+.non-scroll-hide {
+    height: 100vh;
+    overflow:auto; /* Add the ability to scroll */
+}
+
+.non-scroll-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.non-scroll-hide {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+.button-orange{
+    background-color: #FFB22C;
+    color: white;
+}
+.color-navbar{
+    background-color: rgba(54, 54, 54, 0.9);
+}
+.footer{
+    background-color: rgba(54, 54, 54, 0.9);
+}
+.summary-box{
+    width: 60%;
+    margin-top: 3.5rem;
+}
+#category {
+    white-space: nowrap;
+    overflow-x: auto;
+    padding-bottom: 10px; /* Optional, to add some space below the buttons */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */ 
+}
+
+#category div {
+    display: inline-block; /* Ensure the items are displayed inline */
+}
+@media (max-width: 768px) {
+    .summary-box {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        z-index: 1000;
+    }
+    #food-item {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #food-item .col-lg-2 {
+        flex: 0 0 auto;
+        width: auto;
+    }
+
+    #food-item .col-lg-10 {
+        flex: 1 0 auto;
+        width: auto;
+    }
+
+    #food-item .d-flex {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }   
+}
