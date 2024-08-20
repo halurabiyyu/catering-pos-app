@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartModel;
 use App\Models\DetailTransactionModel;
 use App\Models\TransactionModel;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
@@ -159,6 +161,22 @@ class TransactionController extends Controller
             return redirect('admin/user')->with('success', 'Data user berhasil dihapus');
         }catch(\Illuminate\Database\QueryException $e) {
             return redirect('admin/user')->with('error', 'Data user gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+        }
+    }
+
+    public function userShowTransaction() {
+        $userId = Auth::id();
+        $countCart = $this->countCart();
+        $transaction = TransactionModel::where('user_id', $userId)->latest()->get();
+        return view('customer.transaction', ['transaction' => $transaction, 'countCart' => $countCart]);
+    }
+
+    public function countCart() {
+        if (Auth::user()) {
+            $user = Auth::user();
+            $carts = CartModel::with('food')->where('user_id', $user->user_id)->get();
+            $countCart = count($carts);
+            return $countCart;
         }
     }
 }

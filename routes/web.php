@@ -146,6 +146,11 @@ Route::group(['middleware' => ['auth']], function(){
             Route::post('/', [CheckoutController::class, 'process'])->name('checkout.process');
             Route::delete('/{id}', [CheckoutController::class, 'deleteCart'])->name('checkout.deleteCart');
         })->middleware('cek_login');
+
+        Route::group(['prefix' => 'transaction'], function() {
+            Route::get('/', [TransactionController::class, 'userShowTransaction'])->name('userShowTransaction');
+            Route::get('/{id}', [TransactionController::class, 'userShowDetailTransaction'])->name('userShowDetailTransaction');
+        })->middleware('cek_login');
     });
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });

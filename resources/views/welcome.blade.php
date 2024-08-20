@@ -177,12 +177,17 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
                         @csrf
                     </form>
-                    <div class="p-1 mx-3 position-relative">
+                    <div class="p-1 me-2 position-relative">
                         <a href="{{route('checkout.index')}}">
-                            <img src="{{asset('asset/cart.svg')}}" style="width:25px; height:25px;" alt="">
+                            <img src="{{asset('asset/cart.svg')}}" style="width:25px; height:25px;" alt="cart logo">
                             <span class="position-absolute top-10 start-lg-100 translate-middle badge rounded-pill bg-danger">
                                 {{$countCart}}
                             </span>
+                        </a>
+                    </div>
+                    <div class="me-2">
+                        <a href="{{route('userShowTransaction')}}">
+                            <img src="{{asset('asset/transaction.svg')}}" alt="transaction logo">
                         </a>
                     </div>
                 @endif
